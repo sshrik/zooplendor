@@ -11,7 +11,8 @@ export const GOLDEN_TOKEN_INDEX = 5;
     CardList`s score : Score of each cards.
     CardList`s imgSrc : Image Source where it saved. Image can duplicate 4 / 3 / 2 cards each teir.
 */
-export const CardList = {
+
+export const TokenCardList = {
     tier1 : [
         {
             need : [1, 1, 1, 1, 0],
@@ -560,6 +561,57 @@ export const CardList = {
     ],
 };
 
-export const ComboCardList = [];
+export const ComboCardList = [
+    {
+        need : [4, 0, 0, 0, 4],
+        score: 3,
+        imgSrc : ""
+    },
+    {
+        need : [4, 4, 0, 0, 0],
+        score: 3,
+        imgSrc : ""
+    },
+    {
+        need : [3, 3, 3, 0, 0],
+        score: 3,
+        imgSrc : ""
+    },
+    {
+        need : [0, 0, 0, 4, 4],
+        score: 3,
+        imgSrc : ""
+    },
+    {
+        need : [0, 0, 3, 3, 3],
+        score: 3,
+        imgSrc : ""
+    },
+    {
+        need : [0, 4, 4, 0, 0],
+        score: 3,
+        imgSrc : ""
+    },
+    {
+        need : [3, 0, 0, 3, 3],
+        score: 3,
+        imgSrc : ""
+    },
+    {
+        need : [0, 3, 3, 3, 0],
+        score: 3,
+        imgSrc : ""
+    },
+    {
+        need : [0, 0, 4, 4, 0],
+        score: 3,
+        imgSrc : ""
+    },
+    {
+        need : [3, 3, 0, 0, 3],
+        score: 3,
+        imgSrc : ""
+    }
+];
 
-export const TokenList = [];
+export const TokenImageList = ["", "", "", "", "", ""];
