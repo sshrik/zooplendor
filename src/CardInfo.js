@@ -9,7 +9,7 @@ export const GOLDEN_TOKEN_INDEX = 5;
     CardList`s need : Need token number with order of above TOKEN_INDEX.
     CardList`s reword : Reword will be only 1 with number of above TOKEN_INDEX.
     CardList`s score : Score of each cards.
-    CardList`s imgSrc : Image Source where it saved. Image can duplicate 4 / 3 / 2 cards each teir.
+    CardList`s imgSrc : Image Source where it saved. Image can duplicate 10 / 3 / 2 cards each teir.
 */
 
 export const TokenCardList = {
@@ -561,6 +561,11 @@ export const TokenCardList = {
     ],
 };
 
+/**
+    CardList`s need : Need TokenCard number with order of above TOKEN_INDEX.
+    CardList`s score : Score of each combo cards. All same with 3.
+    CardList`s imgSrc : Image source of each combo cards.
+*/
 export const ComboCardList = [
     {
         need : [4, 0, 0, 0, 4],
