@@ -32,7 +32,7 @@ export function ComboCard(props) {
                 />
 			</span>
 			<img 
-				src={ require(`${props.CardInfo.imgSrc}`) }
+				src={ props.CardInfo.imgSrc }
 				style={{ width: 100, height: 100 }}
 			/>
 		</span>

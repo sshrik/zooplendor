@@ -1,5 +1,5 @@
 import React from 'react';
-import { TokenImageList } from './CardInfo.js';
+import { TokenImageList } from '../CardInfo.js';
 
 const tokenCounterStyles = {
     tokenImageCounterContainer: {
@@ -43,7 +43,7 @@ export function TokenCounter(props) {
 				<span style={ tokenCounterStyles.tokenImageCounterContainer } key={i}>
 					<span style={ tokenCounterStyles.tokenImageContainer }>
 						<img 
-                            src={ require( `${TokenImageList[i]}`) } 
+                            src={ TokenImageList[i] } 
                             style={ tokenCounterStyles.tokenImage }
                         />
 					</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComboCard } from './ComboCard.js'
+import { ComboCard } from './component/ComboCard.js'
 import { ComboCardList } from './CardInfo.js'
 
 function App() {
