@@ -4,7 +4,7 @@ import { TokenImageList } from '../CardInfo.js';
 const tokenCounterStyles = {
     tokenImageCounterContainer: {
         display: "flex",
-        marginBottom: 2
+        marginBottom: 3
     },
     tokenImageContainer : { 
         width: 20, 
@@ -30,7 +30,7 @@ const tokenCounterStyles = {
         display: 'flex',
         flexDirection: "column", 
         justifyContent: 'flex-end',
-        marginLeft: 1,  
+        marginLeft: 1.5,
     }
 }
 
