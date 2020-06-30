@@ -561,6 +561,12 @@ export const TokenCardList = {
     ],
 };
 
+export const BackCardImageList = [
+    "/resource/cardBack/Tier 1.png",
+    "/resource/cardBack/Tier 2.png",
+    "/resource/cardBack/Tier 3.png"
+]
+
 /**
     CardList`s need : Need TokenCard number with order of above TOKEN_INDEX.
     CardList`s score : Score of each combo cards. All same with 3.
