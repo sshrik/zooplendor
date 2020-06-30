@@ -21,7 +21,7 @@ const comboCardStyles = {
 
 export function ComboCard(props) {
 	return (
-		<span style={{ flex: 1 }}>
+		<span style={Object.assign({}, props.style, { flex: 1  })}>
 			<span style={comboCardStyles.comboCardSide}>
 				<p style={comboCardStyles.comboCardText}>
                     { props.CardInfo.score }
