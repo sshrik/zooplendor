@@ -37,7 +37,7 @@ const tokenCardStyles = {
 
 export function TokenCard(props) {
     return (
-        <span style={{flex : 1}}>
+        <span style={ Object.assign({}, props.style, {flex : 1}) }>
             <span style={tokenCardStyles.tokenCardTop}>
                 <span style={tokenCardStyles.tokenCardRewordContainer}>
                     <img 
