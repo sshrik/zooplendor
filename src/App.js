@@ -16,16 +16,16 @@ import {
 function App() {
 	return (
 		<div style={{ display: "flex", height: "100vh", alignItems: 'center'}}>
-			<div style={{ marginLeft: "10%", width: "60%", height: "80%", backgroundColor: "#204920", display: "flex"}}>
+			<div style={{ marginLeft: "10%", width: "60%", height: "80%", display: "flex"}}>
 				<div style={{ flex: 1 }}>		
-					<div style={{ marginLeft: "10%", display: "flex", width: "80%", backgroundColor: "#250493" }}>
+					<div style={{ marginLeft: "10%", display: "flex", width: "80%" }}>
 						<ComboCard style={{flex: 1, marginLeft: "5%"}} CardInfo={ ComboCardList[0] }/>
 						<ComboCard style={{flex: 1}} CardInfo={ ComboCardList[1] }/>
 						<ComboCard style={{flex: 1}} CardInfo={ ComboCardList[2] }/>
 						<ComboCard style={{flex: 1}} CardInfo={ ComboCardList[3] }/>
 						<ComboCard style={{flex: 1}} CardInfo={ ComboCardList[4] }/>
 					</div>
-					<div style={{ display: "flex", flexDirection: "column", marginLeft: "10%", marginTop: "10%", flex: 1, backgroundColor: "#603310" }}>
+					<div style={{ display: "flex", flexDirection: "column", marginLeft: "10%", marginRight: "10%", marginTop: "10%", flex: 1 }}>
 						<div>
 							<BackCard style={{marginLeft: "3%"}} imgSrc={ BackCardImageList[2] }/>
 							<TokenCard style={{marginLeft: "10%"}} CardInfo={ TokenCardList.tier3[0] }/>
@@ -49,8 +49,8 @@ function App() {
 						</div>
 					</div>
 				</div>
-				<div style={{ width: "20%", flexDirection: "row", backgroundColor: "#602482" }}>
-					<TokenList kinds={ WHITE_TOKEN_INDEX } remain={ 7 }/>
+				<div style={{ width: "20%", height: "80%", marginTop: "7%", flexDirection: "column", justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+					<TokenList style={{marginTop: "10%"}} kinds={ WHITE_TOKEN_INDEX } remain={ 7 }/>
 					<TokenList kinds={ BLUE_TOKEN_INDEX } remain={ 7 }/>
 					<TokenList kinds={ GREEN_TOKEN_INDEX } remain={ 7 }/>
 					<TokenList kinds={ RED_TOKEN_INDEX } remain={ 7 }/>

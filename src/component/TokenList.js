@@ -32,7 +32,7 @@ const tokenListStyle = {
 
 export function TokenList(props) {
     return(
-        <span style={tokenListStyle.tokenListContainer}>
+        <span style={Object.assign({}, props.style, tokenListStyle.tokenListContainer)}>
             <span style={tokenListStyle.tokenImageContainer}>
                 <img 
                     src={TokenImageList[props.kinds]}
