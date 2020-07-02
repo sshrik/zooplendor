@@ -567,30 +567,29 @@ export const BackCardImageList = [
     "/resource/cardBack/Tier 3.png"
 ]
 
-export const ColoredBackCardImageList = {
-    tier1 : [
+export const ColoredBackCardImageList = [
+    [
         "/resource/cardBack/Tier 1 White.png",
         "/resource/cardBack/Tier 1 Blue.png", 
         "/resource/cardBack/Tier 1 Green.png", 
         "/resource/cardBack/Tier 1 Red.png", 
         "/resource/cardBack/Tier 1 Black.png", 
     ],
-    tier2 : [
+    [
         "/resource/cardBack/Tier 2 White.png",
         "/resource/cardBack/Tier 2 Blue.png", 
         "/resource/cardBack/Tier 2 Green.png", 
         "/resource/cardBack/Tier 2 Red.png", 
         "/resource/cardBack/Tier 2 Black.png", 
     ],
-    tier3 : [
+    [
         "/resource/cardBack/Tier 3 White.png", 
         "/resource/cardBack/Tier 3 Blue.png", 
         "/resource/cardBack/Tier 3 Green.png", 
         "/resource/cardBack/Tier 3 Red.png", 
         "/resource/cardBack/Tier 3 Black.png",
-    ],
-
-}
+    ]
+]
 
 /**
     CardList`s need : Need TokenCard number with order of above TOKEN_INDEX.

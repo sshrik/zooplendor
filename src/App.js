@@ -6,10 +6,12 @@ function App() {
 	return (
 		<div style={{ display: "flex", height: "100vh", alignItems: 'center'  }}>
 			<GameBoard />
-			<div style={{ display: "flex", flexDirection: "column"}}>
-				<Player />
-				<Player />
-				<Player />
+			<div style={{ display: "flex", flexDirection: "column" }}>
+				<Player style={{marginBottom: 50}} />
+				<Player />	
+			</div>
+			<div style={{ display: "flex", flexDirection: "column", marginLeft: 50 }}>
+				<Player style={{marginBottom: 50}} />
 				<Player />	
 			</div>
 		</div>
