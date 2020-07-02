@@ -10,10 +10,77 @@ import {
     GOLDEN_TOKEN_INDEX 
 } from '../CardInfo.js';
 
+const playerStyle = {
+    goldenTokenImg : { 
+        width: 30, 
+        height: 30,
+        resizeMode: 'contain' 
+    },
+    cardBackImg : { 
+        width:50, 
+        height: 70, 
+        resizeMode: 'contain' 
+    },
+    marginedCardBackImg : { 
+        marginTop: -60, 
+        width:50, 
+        height: 70, 
+        resizeMode: 'contain' 
+    },
+    scoreContainer : { 
+        flex: 1, 
+        justifyContent: 'center', 
+        alignContent: 'center' 
+    },
+    scoreP : { 
+        fontSize: 12, 
+        display: 'inline', 
+        textAlign: "center" 
+    },
+    scoreNum : { 
+        fontSize: 15, 
+        display: 'inline', 
+        textAlign: "center" 
+    },
+    goldenTokenContainer : { 
+        flex: 1, 
+        display: 'flex', 
+        flexDirection: "column", 
+        justifyContent: "center", 
+        alignContent: 'center' 
+    }
+}
+
+const havingStyle = {
+    havingP : { 
+        fontSize: 10, 
+        textAlign: "center" 
+    },
+    havingCardContainer : { 
+        display: "flex", 
+        flexDirection: "column" 
+    },
+    havingTokenContainer : { 
+        marginTop: -10, 
+        marginLeft: 2 
+    },
+    havingTokenImg : { 
+        width: 30, 
+        height: 30, 
+        resizeMode: 'contain'
+    },
+    marginedHavingTokenImg : { 
+        marginLeft: -35, 
+        width: 30, 
+        height: 30, 
+        resizeMode: 'contain'
+    },
+}
+
 function GoldenToken(props) {
     return(
         <img 
-            style={Object.assign({}, props.style, { width: 30, height: 30, resizeMode: 'contain'})} 
+            style={Object.assign( {}, props.style, playerStyle.goldenTokenImg )} 
             src={ TokenImageList[GOLDEN_TOKEN_INDEX] } 
             />
     )
@@ -26,12 +93,12 @@ function HavingCard(props) {
         for(let j = 0; j < props.havingList[i]; j++) {
             if(i == 0 && j == 0) {
                 cardList.push(
-                    <img style={{width:50, height: 70, resizeMode: 'contain'}} src={ ColoredBackCardImageList[i][props.tokenIndx] }/>
+                    <img style={ playerStyle.cardBackImg } src={ ColoredBackCardImageList[i][props.tokenIndx] }/>
                 )
             }
             else {
                 cardList.push(
-                    <img style={{ marginTop: -60, width:50, height: 70, resizeMode: 'contain'}} src={ ColoredBackCardImageList[i][props.tokenIndx] }/>
+                    <img style={ playerStyle.marginedCardBackImg } src={ ColoredBackCardImageList[i][props.tokenIndx] }/>
                 )
             }
         }
@@ -39,16 +106,17 @@ function HavingCard(props) {
 
     return(
         <span style={Object.assign({}, props.style, { margin: 5 })}>
-            <p style={{ fontSize: 10, textAlign: "center" }}> { props.number } </p>
-            <span style={{ display: "flex", flexDirection: "column" }}>
+            <p style={ havingStyle.havingP  }> { props.number } </p>
+            <span style={ havingStyle.havingCardContainer }>
                 { cardList }
             </span>
             <span>
-                <HavingToken style={{ marginTop: -10, marginLeft: 2 }} tokenNumber={ props.tokenNumber } tokenIndx={ props.tokenIndx }/>
+                <HavingToken style={ havingStyle.havingTokenContainer } tokenNumber={ props.tokenNumber } tokenIndx={ props.tokenIndx }/>
             </span>
         </span>
     )
 }
+
 
 function HavingToken(props) {
     let tokens = [];
@@ -56,14 +124,14 @@ function HavingToken(props) {
     for(let i = 0; i < props.tokenNumber; i++) {
         if( i == 0) {
             tokens.push(
-                <img style={Object.assign({}, props.style, { width: 30, height: 30, resizeMode: 'contain'})} 
+                <img style={Object.assign({}, props.style, havingStyle.havingTokenImg)} 
                     src={ TokenImageList[ props.tokenIndx ] } 
                     />
             );
         }
         else {
             tokens.push(
-                <img style={Object.assign({}, props.style, { marginLeft: -35, width: 30, height: 30, resizeMode: 'contain'})} 
+                <img style={Object.assign({}, props.style, havingStyle.marginedHavingTokenImg)} 
                     src={ TokenImageList[ props.tokenIndx ] } 
                     />
             );
@@ -79,8 +147,8 @@ function HavingToken(props) {
 function SavingCard(props) {
     return(
         <span style={Object.assign({}, props.style, { margin: 5 })}>
-            <p style={{ fontSize: 10, textAlign: "center" }}> { props.number } </p>
-            <img style={{width:50, height: 70, resizeMode: 'contain'}} src={ BackCardImageList[0] }/>
+            <p style={ havingStyle.havingP }> { props.number } </p>
+            <img style={ playerStyle.cardBackImg } src={ BackCardImageList[0] }/>
         </span>
     )
 }
@@ -90,16 +158,16 @@ export function Player(props) {
     return (
         <span style={Object.assign({}, props.style)}>
             <div style={{display: "flex"}}>
-                <span style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
-                    <p style={{ fontSize: 12, display: 'inline', textAlign: "center" }}> SCORE </p>
-                    <p style={{ fontSize: 15, display: 'inline', textAlign: "center" }}> 8 </p>
+                <span style={ playerStyle.scoreContainer }>
+                    <p style={ playerStyle.scoreP }> SCORE </p>
+                    <p style={ playerStyle.scoreNum }> 8 </p>
                 </span>
                 <HavingCard havingList={ [1, 0, 0] } tokenIndx={ WHITE_TOKEN_INDEX } tokenNumber={ 2 } number={ 1 + 2 } style={{flex: 1}} />
                 <HavingCard havingList={ [1, 2, 0] } tokenIndx={ BLUE_TOKEN_INDEX } tokenNumber={ 2 } number={ 3 + 2 } style={{flex: 3}} />
                 <HavingCard havingList={ [1, 0, 3] } tokenIndx={ GREEN_TOKEN_INDEX } tokenNumber={ 2 } number={ 4 + 2 } style={{flex: 4}} />
             </div>
             <div style={{display: "flex"}}>
-                <span style={{ display: 'flex', flex: 1, flexDirection: "column", justifyContent: "center", alignContent: 'center' }}>
+                <span style={ playerStyle.goldenTokenContainer }>
                     <GoldenToken />
                     <GoldenToken style={{marginTop: -23}}/>
                     <GoldenToken style={{marginTop: -23}}/>
