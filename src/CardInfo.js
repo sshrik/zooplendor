@@ -567,6 +567,30 @@ export const BackCardImageList = [
     "/resource/cardBack/Tier 3.png"
 ]
 
+export const ColoredBackCardImageList = [
+    [
+        "/resource/cardBack/Tier 1 White.png",
+        "/resource/cardBack/Tier 1 Blue.png", 
+        "/resource/cardBack/Tier 1 Green.png", 
+        "/resource/cardBack/Tier 1 Red.png", 
+        "/resource/cardBack/Tier 1 Black.png", 
+    ],
+    [
+        "/resource/cardBack/Tier 2 White.png",
+        "/resource/cardBack/Tier 2 Blue.png", 
+        "/resource/cardBack/Tier 2 Green.png", 
+        "/resource/cardBack/Tier 2 Red.png", 
+        "/resource/cardBack/Tier 2 Black.png", 
+    ],
+    [
+        "/resource/cardBack/Tier 3 White.png", 
+        "/resource/cardBack/Tier 3 Blue.png", 
+        "/resource/cardBack/Tier 3 Green.png", 
+        "/resource/cardBack/Tier 3 Red.png", 
+        "/resource/cardBack/Tier 3 Black.png",
+    ]
+]
+
 /**
     CardList`s need : Need TokenCard number with order of above TOKEN_INDEX.
     CardList`s score : Score of each combo cards. All same with 3.
