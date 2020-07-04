@@ -1,6 +1,33 @@
 import React from 'react';
-import { GameBoard } from './component/GameBoard.js'
-import { Player } from './component/Player.js'
+import { GameBoard } from './component/GameBoard.js';
+import { Player } from './component/Player.js';
+import { ComboCardList, TokenCardList, BackCardImageList } from './CardInfo.js';
+
+const exToken = {
+    tier1 : {
+        need : [0, 0, 0, 0, 0],
+        reword : 0,
+        score: 0,
+        imgSrc : BackCardImageList[0]
+    },
+    tier2 : {
+        need : [0, 0, 0, 0, 0],
+        reword : 0,
+        score: 0,
+        imgSrc : BackCardImageList[1]
+    },
+    tier3 : {
+        need : [0, 0, 0, 0, 0],
+        reword : 0,
+        score: 0,
+        imgSrc : BackCardImageList[2]
+	},
+    combo: {
+        need : [0, 0, 0, 0, 0],
+        score: 0,
+        imgSrc : ComboCardList[0].imgSrc
+    }
+}
 
 class App extends React.Component {
 	constructor(props) {
@@ -15,23 +42,75 @@ class App extends React.Component {
 		this.state = {
 			player : tempPlayer,
 			boardTier1 : {
-				cardPool : [],
-				opend : []
+				cardPool : TokenCardList.tier1.slice(),
+				opened : [ exToken.tier1, exToken.tier1, exToken.tier1, exToken.tier1 ],
 			},
 			boardTier2 : {
-				cardPool : [],
-				opend : []
+				cardPool : TokenCardList.tier2.slice(),
+				opened : [ exToken.tier2, exToken.tier2, exToken.tier2, exToken.tier2 ],
 			},
-			boardTier2 : {
-				cardPool : [],
-				opend : []
+			boardTier3 : {
+				cardPool : TokenCardList.tier3.slice(),
+				opened : [ exToken.tier3, exToken.tier3, exToken.tier3, exToken.tier3 ]
 			},
+			tokenRemains : [7, 7, 7, 7, 7, 7],
+			comboCardList : [ exToken.combo, exToken.combo, exToken.combo, exToken.combo, exToken.combo ],
 			turn : -1,
 		}
 	}
 
 	componentDidMount() {
+		this.settingBoard(4);
+	}
 
+	settingBoard(playerNumber) {
+		// Token Card Tier1 ~ 3 initializing.
+        let tempArrOpend1 = [];
+        let tempArrClosed1 = TokenCardList.tier1.slice();
+        let tempArrOpend2 = [];
+        let tempArrClosed2 = TokenCardList.tier2.slice();
+        let tempArrOpend3 = [];
+		let tempArrClosed3 = TokenCardList.tier3.slice();
+		
+        for(let i = 0 ; i < 4; i++) {
+            this.pickAndRemove( tempArrClosed1, tempArrOpend1 );
+            this.pickAndRemove( tempArrClosed2, tempArrOpend2 );
+            this.pickAndRemove( tempArrClosed3, tempArrOpend3 );
+        }
+		
+		// Combo Card with playerNumber + 1 initializing.
+		let tempArrComboClosed = ComboCardList.slice();
+		let tempArrComboOpened = [];
+		for(let i = 0; i < playerNumber + 1; i++) {
+			this.pickAndRemove( tempArrComboClosed, tempArrComboOpened );
+		}
+		
+        this.setState({
+			boardTier1 : {
+				cardPol: tempArrClosed1,
+				opened: tempArrOpend1
+			},
+			boardTier2 : {
+				cardPol: tempArrClosed2,
+				opened: tempArrOpend2
+			},
+			boardTier3 : {
+				cardPol: tempArrClosed3,
+				opened: tempArrOpend3
+			},
+			comboCardList : tempArrComboOpened
+        });
+	}
+
+    pickAndRemove(arrClosed, arrOpened) {
+		let tempIndex = this.pickRandom(arrClosed);
+
+		arrOpened.push(arrClosed[tempIndex]);
+		arrClosed.splice(tempIndex, 1);
+	}
+
+	pickRandom(cardPool) {
+		return Math.floor( Math.random() * cardPool.length );
 	}
 
 	makePlayerPreset() {
@@ -52,7 +131,13 @@ class App extends React.Component {
 	render() {
 		return (
 			<div style={{ display: "flex", height: "100vh", alignItems: 'center'  }}>
-				<GameBoard />
+				<GameBoard 
+					tier1={ this.state.boardTier1.opened } 
+					tier2={ this.state.boardTier2.opened } 
+					tier3={ this.state.boardTier3.opened }
+					tokenRemains={ this.state.tokenRemains }
+					comboCardList={ this.state.comboCardList }
+				/>
 				<div style={{ display: "flex", flexDirection: "column" }}>
 					<Player 
 						havingToken={ this.state.player[0].tokenNumber } 
