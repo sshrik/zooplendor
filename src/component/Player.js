@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import React from 'react';
 import { BackCardImageList } from '../CardInfo.js';
 import { TokenImageList, ColoredBackCardImageList } from '../CardInfo.js';
@@ -54,15 +55,16 @@ const playerStyle = {
 const havingStyle = {
     havingP : { 
         fontSize: 10, 
-        textAlign: "center" 
+        textAlign: "center",
     },
     havingCardContainer : { 
         display: "flex", 
         flexDirection: "column" 
     },
     havingTokenContainer : { 
+        width: 50,
+        justifyContent: 'flex-start',
         marginTop: -10, 
-        marginLeft: 2 
     },
     havingTokenImg : { 
         width: 30, 
@@ -70,7 +72,7 @@ const havingStyle = {
         resizeMode: 'contain'
     },
     marginedHavingTokenImg : { 
-        marginLeft: -35, 
+        marginLeft: -27, 
         width: 30, 
         height: 30, 
         resizeMode: 'contain'
@@ -87,58 +89,108 @@ function GoldenToken(props) {
 }
 
 function HavingCard(props) {
-    let cardList = [];
+    let [cardList, setCardList] = useState([]);
+    let [tokenNumber, setTokenNumber] = useState(0);
 
-    for(let i = 0; i < props.havingList.length; i++) {
-        for(let j = 0; j < props.havingList[i]; j++) {
-            if(i == 0 && j == 0) {
-                cardList.push(
-                    <img style={ playerStyle.cardBackImg } src={ ColoredBackCardImageList[i][props.tokenIndx] }/>
-                )
-            }
-            else {
-                cardList.push(
-                    <img style={ playerStyle.marginedCardBackImg } src={ ColoredBackCardImageList[i][props.tokenIndx] }/>
-                )
+    // If props.havingList change, chaing cardList with using Hook.
+    useEffect(()=> {
+        let tempCardList = [];
+        let havingTemp = [ 
+            props.havingList.tier1[props.tokenIndx].length, 
+            props.havingList.tier2[props.tokenIndx].length, 
+            props.havingList.tier3[props.tokenIndx].length 
+        ]
+
+        let first = true;
+
+        for(let i = 0; i < havingTemp.length; i++) {
+            for(let j = 0; j < havingTemp[i]; j++) {
+                if(first) {
+                    tempCardList.push(
+                        <img 
+                            style={ playerStyle.cardBackImg } 
+                            src={ ColoredBackCardImageList[i][props.tokenIndx] }
+                        />
+                    )
+                    first = false;
+                }
+                else {
+                    tempCardList.push(
+                        <img 
+                            style={ playerStyle.marginedCardBackImg } 
+                            src={ ColoredBackCardImageList[i][props.tokenIndx] }
+                        />
+                    )
+                }
             }
         }
-    }
+
+        // If no token cards, make space for token setting.
+        if(tempCardList.length == 0) {
+            tempCardList.push(
+                <span style={ playerStyle.cardBackImg } />
+            )
+        }
+
+        setCardList(tempCardList);
+    }, [props.havingList]);
+
+    useEffect(() => {
+        let tempTokenNumber = 0;
+
+        // Add up all token`s reaming.
+        tempTokenNumber += props.havingList.tier1[props.tokenIndx].length;
+        tempTokenNumber += props.havingList.tier2[props.tokenIndx].length;
+        tempTokenNumber += props.havingList.tier3[props.tokenIndx].length;
+        tempTokenNumber += props.havingToken[props.tokenIndx];
+
+        setTokenNumber(tempTokenNumber);
+    }, [props.havingToken, cardList]);
 
     return(
         <span style={Object.assign({}, props.style, { margin: 5 })}>
-            <p style={ havingStyle.havingP  }> { props.number } </p>
+            <p style={ havingStyle.havingP  }> { tokenNumber } </p>
             <span style={ havingStyle.havingCardContainer }>
                 { cardList }
             </span>
             <span>
-                <HavingToken style={ havingStyle.havingTokenContainer } tokenNumber={ props.tokenNumber } tokenIndx={ props.tokenIndx }/>
+                <HavingToken style={ havingStyle.havingTokenContainer } havingToken={ props.havingToken } tokenIndx={ props.tokenIndx }/>
             </span>
         </span>
     )
 }
 
-
 function HavingToken(props) {
-    let tokens = [];
+    let [tokens, setTokens] = useState([]);
 
-    for(let i = 0; i < props.tokenNumber; i++) {
-        if( i == 0) {
-            tokens.push(
-                <img style={Object.assign({}, props.style, havingStyle.havingTokenImg)} 
-                    src={ TokenImageList[ props.tokenIndx ] } 
+
+    useEffect(() => {
+        let tempTokens = [];
+
+        for(let i = 0; i < props.havingToken[props.tokenIndx]; i++) {
+            if( i == 0 ) {
+                tempTokens.push(
+                    <img 
+                        style={Object.assign({}, props.style, havingStyle.havingTokenImg)} 
+                        src={ TokenImageList[ props.tokenIndx ] } 
                     />
-            );
-        }
-        else {
-            tokens.push(
-                <img style={Object.assign({}, props.style, havingStyle.marginedHavingTokenImg)} 
-                    src={ TokenImageList[ props.tokenIndx ] } 
+                );
+            }
+            else {
+                tempTokens.push(
+                    <img 
+                        style={Object.assign({}, props.style, havingStyle.marginedHavingTokenImg)} 
+                        src={ TokenImageList[ props.tokenIndx ] } 
                     />
-            );
+                );
+            }
         }
-    }
+
+        setTokens(tempTokens);
+    }, [props.havingToken]);
+
     return(
-        <span style={Object.assign({}, props.style, { display: "flex" })}>
+        <span style={Object.assign({}, props.style)}>
             {tokens}
         </span>
     )
@@ -154,7 +206,6 @@ function SavingCard(props) {
 }
 
 export function Player(props) {
-
     return (
         <span style={Object.assign({}, props.style)}>
             <div style={{display: "flex"}}>
@@ -162,9 +213,9 @@ export function Player(props) {
                     <p style={ playerStyle.scoreP }> SCORE </p>
                     <p style={ playerStyle.scoreNum }> 8 </p>
                 </span>
-                <HavingCard havingList={ [1, 0, 0] } tokenIndx={ WHITE_TOKEN_INDEX } tokenNumber={ 2 } number={ 1 + 2 } style={{flex: 1}} />
-                <HavingCard havingList={ [1, 2, 0] } tokenIndx={ BLUE_TOKEN_INDEX } tokenNumber={ 2 } number={ 3 + 2 } style={{flex: 3}} />
-                <HavingCard havingList={ [1, 0, 3] } tokenIndx={ GREEN_TOKEN_INDEX } tokenNumber={ 2 } number={ 4 + 2 } style={{flex: 4}} />
+                <HavingCard havingList={ props.havingList } tokenIndx={ WHITE_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
+                <HavingCard havingList={ props.havingList } tokenIndx={ BLUE_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
+                <HavingCard havingList={ props.havingList } tokenIndx={ GREEN_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
             </div>
             <div style={{display: "flex"}}>
                 <span style={ playerStyle.goldenTokenContainer }>
@@ -172,9 +223,9 @@ export function Player(props) {
                     <GoldenToken style={{marginTop: -23}}/>
                     <GoldenToken style={{marginTop: -23}}/>
                 </span>
-                <SavingCard img={BackCardImageList[0]} number={1} style={{flex: 1}} />
-                <HavingCard havingList={ [5, 0, 0] } tokenIndx={ RED_TOKEN_INDEX } tokenNumber={ 2 } number={ 5 + 2 } style={{flex: 5}} />
-                <HavingCard havingList={ [9, 0, 0] } tokenIndx={ BLACK_TOKEN_INDEX } tokenNumber={ 2 } number={ 9 + 2 } style={{flex: 9}} />
+                <SavingCard img={ BackCardImageList[0] } number={ 1 } style={{flex: 1}} />
+                <HavingCard havingList={ props.havingList } tokenIndx={ RED_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
+                <HavingCard havingList={ props.havingList } tokenIndx={ BLACK_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
             </div>
         </span>
     )

@@ -65,7 +65,6 @@ const exToken = {
     }
 }
 
-
 export class GameBoard extends React.Component {
     constructor(props) {
         super(props);
