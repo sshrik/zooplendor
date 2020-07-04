@@ -55,7 +55,8 @@ class App extends React.Component {
 			},
 			tokenRemains : [7, 7, 7, 7, 7, 7],
 			comboCardList : [ exToken.combo, exToken.combo, exToken.combo, exToken.combo, exToken.combo ],
-			turn : -1,
+			turn : 1,
+			playerNumber: 4
 		}
 	}
 
@@ -140,22 +141,30 @@ class App extends React.Component {
 				/>
 				<div style={{ display: "flex", flexDirection: "column" }}>
 					<Player 
+						turn={ this.state.turn }
+						playerNumber={ 1 }
 						havingToken={ this.state.player[0].tokenNumber } 
 						havingList={ this.state.player[0].tokenCard } 
 						style={{marginBottom: 50}} 
 					/>
 					<Player 
+						turn={ this.state.turn }
+						playerNumber={ 2 }
 						havingToken={ this.state.player[1].tokenNumber } 
 						havingList={ this.state.player[1].tokenCard } 
 					/>	
 				</div>
 				<div style={{ display: "flex", flexDirection: "column", marginLeft: 50 }}>
 					<Player 
+						turn={ this.state.turn }
+						playerNumber={ 3 }
 						havingToken={ this.state.player[2].tokenNumber } 
 						havingList={ this.state.player[2].tokenCard } 
 						style={{marginBottom: 50}}
 					/>
 					<Player 
+						turn={ this.state.turn }
+						playerNumber={ 4 }
 						havingToken={ this.state.player[3].tokenNumber } 
 						havingList={ this.state.player[3].tokenCard }
 					/>	

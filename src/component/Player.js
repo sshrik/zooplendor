@@ -206,8 +206,19 @@ function SavingCard(props) {
 }
 
 export function Player(props) {
+    let [nowTurn, setNowTurn] = useState({ backgroundColor: "#FFFFFF"});
+
+    useEffect(() => {
+        if(props.turn == props.playerNumber) {
+            setNowTurn({ backgroundColor: "#BADFFF"});
+        }
+        else {
+            setNowTurn({ backgroundColor: "#FFFFFF"});
+        }
+    }, [props.turn]);
+
     return (
-        <span style={Object.assign({}, props.style)}>
+        <span style={Object.assign({}, props.style, nowTurn)}>
             <div style={{display: "flex"}}>
                 <span style={ playerStyle.scoreContainer }>
                     <p style={ playerStyle.scoreP }> SCORE </p>
