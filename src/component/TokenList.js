@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { TokenImageList } from '../CardInfo.js';
 import { 
 	GOLDEN_TOKEN_INDEX 
@@ -12,10 +13,13 @@ const tokenListStyle = {
         marginBottom: 10
     },
     tokenImageContainer : {
-        width: 80, 
-        height: 80
+        width: 100, 
+        height: 100,
+        textAlign: "center",
+        borderRadius: 50,
     },
     tokenImage : {
+        marginTop: 10,
         width: 80, 
         height: 80
     },
@@ -34,10 +38,22 @@ const tokenListStyle = {
 }
 
 export function TokenList(props) {
+    let [selected, setSelected] = useState({ backgroundColor: "#FFFFFF" });
+
+    useEffect(() => {
+        if(props.selected) {
+            setSelected({ backgroundColor: "#FFBF88" });
+        }
+        else {
+            setSelected({ backgroundColor: "#FFFFFF" });
+        }
+        console.log(selected);
+    }, [props.selected])
+
     return(
         <span style={Object.assign({}, props.style, tokenListStyle.tokenListContainer)}>
             <span 
-                style={tokenListStyle.tokenImageContainer}
+                style={Object.assign({}, tokenListStyle.tokenImageContainer, selected)}
                 onClick={ (e) => { 
                     // Golden Token only can be taken by reserving cards.
                     if(props.kinds != GOLDEN_TOKEN_INDEX) {

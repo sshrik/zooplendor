@@ -149,7 +149,7 @@ function HavingCard(props) {
         tempTokenNumber += props.havingToken[props.tokenIndx];
 
         setTokenNumber(tempTokenNumber);
-    }, [props.havingToken, props.havingList]);
+    }, [props.havingToken[props.tokenIndx], props.havingList]);
 
     return(
         <span style={Object.assign({}, props.style, { margin: 5 })}>

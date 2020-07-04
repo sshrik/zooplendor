@@ -47,6 +47,23 @@ const gameBoardStyle = {
 export class GameBoard extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            selected : [false, false, false, false, false, false]
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.nowSelectedToken != this.props.nowSelectedToken) {
+            let tempSelected = [false, false, false, false, false, false];
+
+            console.log(this.props.nowSelectedToken)
+            for(let i = 0; i < this.props.nowSelectedToken.length; i++) {
+                tempSelected[this.props.nowSelectedToken[i]] = true;
+            }
+            console.log(tempSelected);
+
+            this.setState({selected: tempSelected});
+        }
     }
 
     render() {
@@ -87,31 +104,37 @@ export class GameBoard extends React.Component {
                 <div style={ gameBoardStyle.tokenListContainer }>
                     <TokenList 
                         style={{marginTop: "10%"}} 
+                        selected={ this.state.selected[WHITE_TOKEN_INDEX] }
                         kinds={ WHITE_TOKEN_INDEX } 
                         remain={ this.props.tokenRemains[WHITE_TOKEN_INDEX] }
                         selectToken={ this.props.selectToken }
                     />
                     <TokenList 
+                        selected={ this.state.selected[BLUE_TOKEN_INDEX] }
                         kinds={ BLUE_TOKEN_INDEX } 
                         remain={ this.props.tokenRemains[BLUE_TOKEN_INDEX] } 
                         selectToken={ this.props.selectToken }
                     />
                     <TokenList 
+                        selected={ this.state.selected[GREEN_TOKEN_INDEX] }
                         kinds={ GREEN_TOKEN_INDEX } 
                         remain={ this.props.tokenRemains[GREEN_TOKEN_INDEX] }
                         selectToken={ this.props.selectToken }
                     />
                     <TokenList 
+                        selected={ this.state.selected[RED_TOKEN_INDEX] }
                         kinds={ RED_TOKEN_INDEX } 
                         remain={ this.props.tokenRemains[RED_TOKEN_INDEX] }
                         selectToken={ this.props.selectToken }
                     />
                     <TokenList 
+                        selected={ this.state.selected[BLACK_TOKEN_INDEX] }
                         kinds={ BLACK_TOKEN_INDEX } 
                         remain={ this.props.tokenRemains[BLACK_TOKEN_INDEX] }
                         selectToken={ this.props.selectToken }
                     />
                     <TokenList 
+                        selected={ this.state.selected[GOLDEN_TOKEN_INDEX] }
                         kinds={ GOLDEN_TOKEN_INDEX } 
                         remain={ this.props.tokenRemains[GOLDEN_TOKEN_INDEX] }
                         selectToken={ this.props.selectToken }
