@@ -138,11 +138,16 @@ class App extends React.Component {
 		let tempToken = this.state.nowSelectedToken.slice();
 		
 		if(this.state.tokenRemains[tokenIndx] > 0) {
+			// 2개 1개 고르는거 제외하고, 2개 고를 때 4개 이상일 때만 골라올 수 있게 하는 로직.
 			if(!tempToken.includes(tokenIndx)) {
+				tempToken.push(tokenIndx);
+			}
+			else if(tempToken.length == 1 && this.state.tokenRemains[tokenIndx] >= 4) {
 				tempToken.push(tokenIndx);
 			}
 		}
 
+		// 2개 골랐으면 가져오기. 혹은 3개 골랐을 때 가져오기.
 		if(tempToken.length == 2) {
 			if(tempToken[0] == tempToken[1]) {
 				this.giveToken(tempToken);
