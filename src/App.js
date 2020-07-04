@@ -138,7 +138,9 @@ class App extends React.Component {
 		let tempToken = this.state.nowSelectedToken.slice();
 		
 		if(this.state.tokenRemains[tokenIndx] > 0) {
-			tempToken.push(tokenIndx);
+			if(!tempToken.includes(tokenIndx)) {
+				tempToken.push(tokenIndx);
+			}
 		}
 
 		if(tempToken.length == 2) {
@@ -167,12 +169,17 @@ class App extends React.Component {
 
 	giveToken(tokenList) {
 		let tempPlayer = this.state.player.slice();
+		let tempTokenRemain = this.state.tokenRemains.slice();
 
 		for(let i = 0; i < tokenList.length; i++) {
 			tempPlayer[this.state.turn - 1].tokenNumber[tokenList[i]] += 1;
+			tempTokenRemain[tokenList[i]] -= 1;
 		}
 
-		this.setState({player: tempPlayer});
+		this.setState({
+			player: tempPlayer,
+			tokenRemains: tempTokenRemain
+		});
 	}
 
 	buyCard(tier, indx) {
