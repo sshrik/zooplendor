@@ -36,7 +36,7 @@ class App extends React.Component {
 		let tempPlayer = [];
 		
 		for(let i = 0; i < 4; i++) {
-			tempPlayer.push(this.makePlayerPreset());
+			tempPlayer.push( this.makePlayerPreset() );
 		}
 
 		this.state = {
@@ -55,9 +55,14 @@ class App extends React.Component {
 			},
 			tokenRemains : [7, 7, 7, 7, 7, 7],
 			comboCardList : [ exToken.combo, exToken.combo, exToken.combo, exToken.combo, exToken.combo ],
+			nowSelectedToken : [],
+			nowSelectedCard : [],
 			turn : 1,
 			playerNumber: 4
 		}
+
+		this.selectToken = this.selectToken.bind(this);
+		this.giveToken = this.giveToken.bind(this);
 	}
 
 	componentDidMount() {
@@ -117,16 +122,62 @@ class App extends React.Component {
 	makePlayerPreset() {
 		return (
 			{
-				tokenNumber : [1, 2, 3, 7, 4, 5],
+				tokenNumber : [0, 0, 0, 0, 0, 0],
 				tokenCard : {
-					tier1: [[0, 0], [0], [], [], [0]],
-					tier2: [[], [0], [], [], []],
-					tier3: [[], [], [0], [], []]
+					tier1: [[], [], [], [], []],
+					tier2: [[], [], [], [], []],
+					tier3: [[], [], [], [], []]
 				},
 				savingCard : [],
 				score : 0
 			}
 		)
+	}
+
+	selectToken(tokenIndx) {
+		let tempToken = this.state.nowSelectedToken.slice();
+		
+		if(this.state.tokenRemains[tokenIndx] > 0) {
+			tempToken.push(tokenIndx);
+		}
+
+		if(tempToken.length == 2) {
+			if(tempToken[0] == tempToken[1]) {
+				this.giveToken(tempToken);
+				this.setState({
+					turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+					nowSelectedToken: []
+				});
+			}
+			else {
+				this.setState({nowSelectedToken: tempToken});
+			}
+		}
+		else if(tempToken.length == 3) {
+			this.giveToken(tempToken);
+			this.setState({
+				turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+				nowSelectedToken: []
+			});
+		}
+		else {
+			this.setState({nowSelectedToken: tempToken});
+		}
+	}
+
+	giveToken(tokenList) {
+		let tempPlayer = this.state.player.slice();
+
+		for(let i = 0; i < tokenList.length; i++) {
+			tempPlayer[this.state.turn - 1].tokenNumber[tokenList[i]] += 1;
+		}
+
+		this.setState({player: tempPlayer});
+	}
+
+	buyCard(tier, indx) {
+		// can buy card will be check at player components.
+		
 	}
 
 	render() {
@@ -136,8 +187,12 @@ class App extends React.Component {
 					tier1={ this.state.boardTier1.opened } 
 					tier2={ this.state.boardTier2.opened } 
 					tier3={ this.state.boardTier3.opened }
+					selectCard={ this.state.nowSelectedCard }
+					nowSelectedToken={ this.state.nowSelectedToken }
 					tokenRemains={ this.state.tokenRemains }
 					comboCardList={ this.state.comboCardList }
+					playerToken={ this.state.player }
+					selectToken={ this.selectToken }
 				/>
 				<div style={{ display: "flex", flexDirection: "column" }}>
 					<Player 

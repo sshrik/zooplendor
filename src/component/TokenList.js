@@ -1,5 +1,8 @@
 import React from 'react';
 import { TokenImageList } from '../CardInfo.js';
+import { 
+	GOLDEN_TOKEN_INDEX 
+} from '../CardInfo.js'
 
 const tokenListStyle = {
     tokenListContainer : {
@@ -33,7 +36,16 @@ const tokenListStyle = {
 export function TokenList(props) {
     return(
         <span style={Object.assign({}, props.style, tokenListStyle.tokenListContainer)}>
-            <span style={tokenListStyle.tokenImageContainer}>
+            <span 
+                style={tokenListStyle.tokenImageContainer}
+                onClick={ (e) => { 
+                    // Golden Token only can be taken by reserving cards.
+                    if(props.kinds != GOLDEN_TOKEN_INDEX) {
+                        e.stopPropagation();
+                        props.selectToken(props.kinds);
+                    }
+                } }
+            >
                 <img 
                     src={TokenImageList[props.kinds]}
                     style={tokenListStyle.tokenImage}

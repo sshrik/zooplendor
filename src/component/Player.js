@@ -102,12 +102,15 @@ function HavingCard(props) {
         ]
 
         let first = true;
+        let key = 0;
 
         for(let i = 0; i < havingTemp.length; i++) {
             for(let j = 0; j < havingTemp[i]; j++) {
+                key += 1;
                 if(first) {
                     tempCardList.push(
                         <img 
+                            key={ key }
                             style={ playerStyle.cardBackImg } 
                             src={ ColoredBackCardImageList[i][props.tokenIndx] }
                         />
@@ -117,6 +120,7 @@ function HavingCard(props) {
                 else {
                     tempCardList.push(
                         <img 
+                            key={ key }
                             style={ playerStyle.marginedCardBackImg } 
                             src={ ColoredBackCardImageList[i][props.tokenIndx] }
                         />
@@ -128,7 +132,7 @@ function HavingCard(props) {
         // If no token cards, make space for token setting.
         if(tempCardList.length == 0) {
             tempCardList.push(
-                <span style={ playerStyle.cardBackImg } />
+                <span style={ Object.assign({}, playerStyle.cardBackImg, {backgroundColor: "#000000"}) } />
             )
         }
 
@@ -145,7 +149,7 @@ function HavingCard(props) {
         tempTokenNumber += props.havingToken[props.tokenIndx];
 
         setTokenNumber(tempTokenNumber);
-    }, [props.havingToken, cardList]);
+    }, [props.havingToken, props.havingList]);
 
     return(
         <span style={Object.assign({}, props.style, { margin: 5 })}>
@@ -154,7 +158,11 @@ function HavingCard(props) {
                 { cardList }
             </span>
             <span>
-                <HavingToken style={ havingStyle.havingTokenContainer } havingToken={ props.havingToken } tokenIndx={ props.tokenIndx }/>
+                <HavingToken 
+                    style={ havingStyle.havingTokenContainer }
+                    havingToken={ props.havingToken } 
+                    tokenIndx={ props.tokenIndx }
+                />
             </span>
         </span>
     )
@@ -163,14 +171,13 @@ function HavingCard(props) {
 function HavingToken(props) {
     let [tokens, setTokens] = useState([]);
 
-
     useEffect(() => {
         let tempTokens = [];
-
         for(let i = 0; i < props.havingToken[props.tokenIndx]; i++) {
             if( i == 0 ) {
                 tempTokens.push(
                     <img 
+                        key={ i }
                         style={Object.assign({}, props.style, havingStyle.havingTokenImg)} 
                         src={ TokenImageList[ props.tokenIndx ] } 
                     />
@@ -179,6 +186,7 @@ function HavingToken(props) {
             else {
                 tempTokens.push(
                     <img 
+                        key={ i }
                         style={Object.assign({}, props.style, havingStyle.marginedHavingTokenImg)} 
                         src={ TokenImageList[ props.tokenIndx ] } 
                     />
@@ -187,8 +195,8 @@ function HavingToken(props) {
         }
 
         setTokens(tempTokens);
-    }, [props.havingToken]);
-
+    }, [ props.havingToken[props.tokenIndx] ]);
+    
     return(
         <span style={Object.assign({}, props.style)}>
             {tokens}

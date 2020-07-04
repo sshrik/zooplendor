@@ -3,7 +3,7 @@ import { ComboCard } from './ComboCard.js'
 import { TokenCard } from './TokenCard.js'
 import { TokenList } from './TokenList.js'
 import { BackCard } from './BackCard.js'
-import { ComboCardList, BackCardImageList } from '../CardInfo.js'
+import { BackCardImageList } from '../CardInfo.js'
 import { 
 	WHITE_TOKEN_INDEX, 
 	BLUE_TOKEN_INDEX, 
@@ -85,12 +85,37 @@ export class GameBoard extends React.Component {
                     </div>
                 </div>
                 <div style={ gameBoardStyle.tokenListContainer }>
-                    <TokenList style={{marginTop: "10%"}} kinds={ WHITE_TOKEN_INDEX } remain={ this.props.tokenRemains[WHITE_TOKEN_INDEX] } />
-                    <TokenList kinds={ BLUE_TOKEN_INDEX } remain={ this.props.tokenRemains[BLUE_TOKEN_INDEX] } />
-                    <TokenList kinds={ GREEN_TOKEN_INDEX } remain={ this.props.tokenRemains[GREEN_TOKEN_INDEX] } />
-                    <TokenList kinds={ RED_TOKEN_INDEX } remain={ this.props.tokenRemains[RED_TOKEN_INDEX] } />
-                    <TokenList kinds={ BLACK_TOKEN_INDEX } remain={ this.props.tokenRemains[BLACK_TOKEN_INDEX] } />
-                    <TokenList kinds={ GOLDEN_TOKEN_INDEX } remain={ this.props.tokenRemains[GOLDEN_TOKEN_INDEX] } />
+                    <TokenList 
+                        style={{marginTop: "10%"}} 
+                        kinds={ WHITE_TOKEN_INDEX } 
+                        remain={ this.props.tokenRemains[WHITE_TOKEN_INDEX] }
+                        selectToken={ this.props.selectToken }
+                    />
+                    <TokenList 
+                        kinds={ BLUE_TOKEN_INDEX } 
+                        remain={ this.props.tokenRemains[BLUE_TOKEN_INDEX] } 
+                        selectToken={ this.props.selectToken }
+                    />
+                    <TokenList 
+                        kinds={ GREEN_TOKEN_INDEX } 
+                        remain={ this.props.tokenRemains[GREEN_TOKEN_INDEX] }
+                        selectToken={ this.props.selectToken }
+                    />
+                    <TokenList 
+                        kinds={ RED_TOKEN_INDEX } 
+                        remain={ this.props.tokenRemains[RED_TOKEN_INDEX] }
+                        selectToken={ this.props.selectToken }
+                    />
+                    <TokenList 
+                        kinds={ BLACK_TOKEN_INDEX } 
+                        remain={ this.props.tokenRemains[BLACK_TOKEN_INDEX] }
+                        selectToken={ this.props.selectToken }
+                    />
+                    <TokenList 
+                        kinds={ GOLDEN_TOKEN_INDEX } 
+                        remain={ this.props.tokenRemains[GOLDEN_TOKEN_INDEX] }
+                        selectToken={ this.props.selectToken }
+                    />
                 </div>
             </div>
         )
