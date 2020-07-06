@@ -1,4 +1,5 @@
 import React from 'react';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { TokenCounter } from './TokenCounter.js'
 import { TokenImageList } from '../CardInfo.js';
 
@@ -35,30 +36,62 @@ const tokenCardStyles = {
     }
 }
 
-export function TokenCard(props) {
+function RightClickMenu(props) {
     return (
-        <span style={ Object.assign({}, props.style, { flex : 1 }) }>
-            <span style={tokenCardStyles.tokenCardTop}>
-                <span style={tokenCardStyles.tokenCardRewordContainer}>
-                    <img 
-                        style={tokenCardStyles.tokenCardReword} 
-                        src={TokenImageList[props.CardInfo.reword]}
-                    />
-                </span>
-            </span>
-            <span style={tokenCardStyles.tokenCardSide}>
-                <p style={tokenCardStyles.tokenCardText}>
-                    { props.CardInfo.score }
-                </p>
-                <TokenCounter 
-                    style={tokenCardStyles.tokenCardTokenImage}
-                    CardInfo={ props.CardInfo }
-                />
-            </span>
-            <img 
-                src={ props.CardInfo.imgSrc }
-                style={{ width: 100, height: 140 }}
-            />
-        </span>
+        <ContextMenu style={{ backgroundColor: "#FFFFFF", padding: 5 }} id={props.id}>
+            <MenuItem 
+                data={{act: 'buy'}}
+                onClick={ (e, data, el) => {
+                    console.log("Clicked! : " + data);
+                }}
+            >
+                구매하기
+            </MenuItem>
+            <MenuItem 
+                data={{act: 'book'}}
+                onClick={ (e, data, el) => {
+                    console.log("Clicked! : " + data);
+                }}
+            >
+                예약하기
+            </MenuItem>
+        </ContextMenu>
     )
+} 
+
+export class TokenCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <span style={ Object.assign({}, this.props.style, { display: "inline", width: 100, height: 140 }) }>
+                <ContextMenuTrigger renderTag="span" id={"tokenCard " + this.props.cardIndex}>
+                    <span style={tokenCardStyles.tokenCardTop}>
+                        <span style={tokenCardStyles.tokenCardRewordContainer}>
+                            <img 
+                                style={tokenCardStyles.tokenCardReword} 
+                                src={TokenImageList[this.props.CardInfo.reword]}
+                            />
+                        </span>
+                    </span>
+                    <span style={tokenCardStyles.tokenCardSide}>
+                        <p style={tokenCardStyles.tokenCardText}>
+                            { this.props.CardInfo.score }
+                        </p>
+                        <TokenCounter 
+                            style={tokenCardStyles.tokenCardTokenImage}
+                            CardInfo={ this.props.CardInfo }
+                        />
+                    </span>
+                    <img 
+                        src={ this.props.CardInfo.imgSrc }
+                        style={{ width: 100, height: 140 }}
+                    />
+                </ContextMenuTrigger>
+                <RightClickMenu id={"tokenCard " + this.props.cardIndex}/>
+            </span>
+        )
+    }
 }

@@ -47,7 +47,6 @@ export function TokenList(props) {
         else {
             setSelected({ backgroundColor: "#FFFFFF" });
         }
-        console.log(selected);
     }, [props.selected])
 
     return(
