@@ -91,9 +91,28 @@ function GoldenToken(props) {
 function HavingCard(props) {
     let [cardList, setCardList] = useState([]);
     let [tokenNumber, setTokenNumber] = useState(0);
+    
+    useEffect(() => { 
+        let tier1Num = props.havingList.tier1[props.tokenIndx].length;
+        let tier2Num = props.havingList.tier2[props.tokenIndx].length;
+        let tier3Num = props.havingList.tier3[props.tokenIndx].length;
+ 
+        if(tier1Num + tier2Num + tier3Num != 0) {
+            if(cardList[0].props.src) {
+                if(cardList.length != tier1Num + tier2Num + tier3Num) {
+                    updateCardList();
+                    updateTokenNumber();
+                }
+            }
+            else {
+                // If empty,
+                updateCardList();
+                updateTokenNumber();
+            }
+        }
+    });
 
-    // If props.havingList change, chaing cardList with using Hook.
-    useEffect(()=> {
+    let updateCardList = () => {
         let tempCardList = [];
         let havingTemp = [ 
             props.havingList.tier1[props.tokenIndx].length, 
@@ -132,14 +151,14 @@ function HavingCard(props) {
         // If no token cards, make space for token setting.
         if(tempCardList.length == 0) {
             tempCardList.push(
-                <span style={ Object.assign({}, playerStyle.cardBackImg, {backgroundColor: "#000000"}) } />
+                <span style={ Object.assign({}, playerStyle.cardBackImg) } />
             )
         }
 
         setCardList(tempCardList);
-    }, [props.havingList]);
+    }
 
-    useEffect(() => {
+    let updateTokenNumber = () => {
         let tempTokenNumber = 0;
 
         // Add up all token`s reaming.
@@ -149,7 +168,20 @@ function HavingCard(props) {
         tempTokenNumber += props.havingToken[props.tokenIndx];
 
         setTokenNumber(tempTokenNumber);
-    }, [props.havingToken[props.tokenIndx], props.havingList]);
+    }
+
+    // If props.havingList change, chaing cardList with using Hook.
+    useEffect(()=> {
+        updateCardList();
+
+        console.log("Card List Setting called. : " + props.havingList.tier1);
+    }, [ props.havingList ]);
+
+    useEffect(() => {
+        updateTokenNumber();
+    }, [
+        props.havingToken[props.tokenIndx]
+    ]);
 
     return(
         <span style={Object.assign({}, props.style, { margin: 5 })}>

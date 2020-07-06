@@ -63,6 +63,8 @@ class App extends React.Component {
 
 		this.selectToken = this.selectToken.bind(this);
 		this.giveToken = this.giveToken.bind(this);
+		this.buyCard = this.buyCard.bind(this);
+		this.bookCard = this.bookCard.bind(this);
 	}
 
 	componentDidMount() {
@@ -93,15 +95,15 @@ class App extends React.Component {
 		
         this.setState({
 			boardTier1 : {
-				cardPol: tempArrClosed1,
+				cardPool: tempArrClosed1,
 				opened: tempArrOpend1
 			},
 			boardTier2 : {
-				cardPol: tempArrClosed2,
+				cardPool: tempArrClosed2,
 				opened: tempArrOpend2
 			},
 			boardTier3 : {
-				cardPol: tempArrClosed3,
+				cardPool: tempArrClosed3,
 				opened: tempArrOpend3
 			},
 			comboCardList : tempArrComboOpened
@@ -187,9 +189,133 @@ class App extends React.Component {
 		});
 	}
 
-	buyCard(tier, indx) {
-		// can buy card will be check at player components.
+	buyCard(tier, index) {
+		let tempPlayer = this.state.player.slice();
+		let tokenRemains = this.state.tokenRemains.slice();
+		let need = [];
+		let tempBoardOpened = [];
+		let tempBoardPool = [];
 		
+		switch(tier) {
+			case 1:
+				need = this.state.boardTier1.opened[index].need;
+				tempBoardOpened = this.state.boardTier1.opened.slice();
+				tempBoardPool = this.state.boardTier1.cardPool.slice();
+				break;
+			case 2:
+				need = this.state.boardTier2.opened[index].need;
+				tempBoardOpened = this.state.boardTier2.opened.slice();
+				tempBoardPool = this.state.boardTier2.cardPool.slice();
+				break;
+			case 3:
+				need = this.state.boardTier3.opened[index].need;
+				tempBoardOpened = this.state.boardTier3.opened.slice();
+				tempBoardPool = this.state.boardTier3.cardPool.slice();
+			default:
+				break;
+		}
+
+		let nowPlayer = tempPlayer[this.state.turn-1];
+		let nowHavingToken = nowPlayer.tokenNumber;
+		let nowhavingCard = nowPlayer.tokenCard;
+
+		// Checking all having token.
+		let having = nowHavingToken.slice();
+		let cardHaving = [0, 0, 0, 0, 0]; // Token number which having with cards.
+		
+		for(let i = 0; i < nowhavingCard.tier1.length; i++) {
+			having[nowhavingCard.tier1[i].reword] += 1;
+			cardHaving[nowhavingCard.tier1[i].reword] += 1;
+		}
+		for(let i = 0; i < nowhavingCard.tier2.length; i++) {
+			having[nowhavingCard.tier2[i].reword] += 1;
+			cardHaving[nowhavingCard.tier2[i].reword] += 1;
+		}
+		for(let i = 0; i < nowhavingCard.tier3.length; i++) {
+			having[nowhavingCard.tier3[i].reword] += 1;
+			cardHaving[nowhavingCard.tier3[i].reword] += 1;
+		}
+
+		if( this.checkNeed(need, having) ) {
+			let pickNumber = -1;
+			for(let i = 0; i < need.length; i++) {
+				nowPlayer.tokenNumber[i] -= (need[i] - cardHaving[i]);
+				tokenRemains[i] += (need[i] - cardHaving[i]);
+			}
+			switch(tier) {
+				case 1:
+					nowPlayer.tokenCard.tier1[this.state.boardTier1.opened[index].reword].push(this.state.boardTier1.opened[index]);
+					break;
+				case 2:
+					nowPlayer.tokenCard.tier2[this.state.boardTier2.opened[index].reword].push(this.state.boardTier2.opened[index]);
+					break;
+				case 3:
+					nowPlayer.tokenCard.tier3[this.state.boardTier3.opened[index].reword].push(this.state.boardTier3.opened[index]);
+					break;
+				default:
+
+					break;
+			}
+			pickNumber = this.pickRandom(tempBoardPool);
+			tempBoardOpened.splice(index, 0, tempBoardPool[pickNumber]);
+			tempBoardOpened.splice(index + 1, 1);
+			tempBoardPool.splice(pickNumber, 1);
+
+			switch(tier) {
+				case 1:
+					this.setState({
+						player: tempPlayer,
+						turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+						tokenRemains: tokenRemains,
+						boardTier1: {
+							cardPool: tempBoardPool,
+							opened: tempBoardOpened
+						},
+					});
+					break;
+				case 2:
+					this.setState({
+						player: tempPlayer,
+						turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+						tokenRemains: tokenRemains,
+						boardTier2: {
+							cardPool: tempBoardPool,
+							opened: tempBoardOpened
+						}
+					});
+					break;
+				case 3:
+					this.setState({
+						player: tempPlayer,
+						turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+						tokenRemains: tokenRemains,
+						boardTier3: {
+							cardPool: tempBoardPool,
+							opened: tempBoardOpened
+						}
+					});
+					break;
+				default:
+					break;
+			}
+		}
+	}
+
+	checkNeed(need, having){ 
+		let ret = true;
+
+		for(let i = 0; i < need.length; i++) {
+			if(need[i] > having[i]) {
+				ret = false;
+				break;
+			}
+		}
+
+		return ret;
+	}
+
+	bookCard(tier, index) {
+		console.log("Card Book " + tier + " : " + index);
 	}
 
 	render() {
@@ -205,6 +331,8 @@ class App extends React.Component {
 					comboCardList={ this.state.comboCardList }
 					playerToken={ this.state.player }
 					selectToken={ this.selectToken }
+					buyCard={ this.buyCard } 
+					bookCard={ this.bookCard }
 				/>
 				<div style={{ display: "flex", flexDirection: "column" }}>
 					<Player 

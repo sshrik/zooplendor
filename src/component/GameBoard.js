@@ -78,24 +78,60 @@ export class GameBoard extends React.Component {
                     <div style={ gameBoardStyle.tokenCardContainer }>
                         <div>
                             <BackCard style={{marginLeft: "3%"}} imgSrc={ BackCardImageList[2] }/>
-                            <TokenCard style={{marginLeft: "10%"}} CardInfo={ this.props.tier3[0] } cardIndex={"3-0"}/>
-                            <TokenCard style={{marginLeft: "5%"}} CardInfo={ this.props.tier3[1] } cardIndex={"3-1"}/>
-                            <TokenCard style={{marginLeft: "5%"}} CardInfo={ this.props.tier3[2] } cardIndex={"3-2"}/>
-                            <TokenCard style={{marginLeft: "5%"}} CardInfo={ this.props.tier3[3] } cardIndex={"3-3"}/>
+                            <TokenCard style={{marginLeft: "10%"}} 
+                                CardInfo={ this.props.tier3[0] } tier={3} index={0} 
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
+                            <TokenCard style={{marginLeft: "5%"}} 
+                                CardInfo={ this.props.tier3[1] } tier={3} index={1}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
+                            <TokenCard style={{marginLeft: "5%"}} 
+                                CardInfo={ this.props.tier3[2] } tier={3} index={2}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
+                            <TokenCard style={{marginLeft: "5%"}} 
+                                CardInfo={ this.props.tier3[3] } tier={3} index={3}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
                         </div>
                         <div>
                             <BackCard style={{marginLeft: "3%"}} imgSrc={ BackCardImageList[1] }/>
-                            <TokenCard style={{marginLeft: "10%"}} CardInfo={ this.props.tier2[0] } cardIndex={"2-0"}/>
-                            <TokenCard style={{marginLeft: "5%"}} CardInfo={ this.props.tier2[1] } cardIndex={"2-1"}/>
-                            <TokenCard style={{marginLeft: "5%"}} CardInfo={ this.props.tier2[2] } cardIndex={"2-2"}/>
-                            <TokenCard style={{marginLeft: "5%"}} CardInfo={ this.props.tier2[3] } cardIndex={"2-3"}/>
+                            <TokenCard style={{marginLeft: "10%"}} 
+                                CardInfo={ this.props.tier2[0] } tier={2} index={0}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
+                            <TokenCard style={{marginLeft: "5%"}} 
+                                CardInfo={ this.props.tier2[1] } tier={2} index={1}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
+                            <TokenCard style={{marginLeft: "5%"}} 
+                                CardInfo={ this.props.tier2[2] } tier={2} index={2}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
+                            <TokenCard style={{marginLeft: "5%"}} 
+                                CardInfo={ this.props.tier2[3] } tier={2} index={3}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
                         </div>
                         <div>
                             <BackCard style={{marginLeft: "3%"}} imgSrc={ BackCardImageList[0] }/>
-                            <TokenCard style={{marginLeft: "10%"}} CardInfo={ this.props.tier1[0] } cardIndex={"1-0"}/>
-                            <TokenCard style={{marginLeft: "5%"}} CardInfo={ this.props.tier1[1] } cardIndex={"1-1"}/>
-                            <TokenCard style={{marginLeft: "5%"}} CardInfo={ this.props.tier1[2] } cardIndex={"1-2"}/>
-                            <TokenCard style={{marginLeft: "5%"}} CardInfo={ this.props.tier1[3] } cardIndex={"1-3"}/>
+                            <TokenCard style={{marginLeft: "10%"}} 
+                                CardInfo={ this.props.tier1[0] } tier={1} index={0}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
+                            <TokenCard style={{marginLeft: "5%"}} 
+                                CardInfo={ this.props.tier1[1] } tier={1} index={1}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
+                            <TokenCard style={{marginLeft: "5%"}} 
+                                CardInfo={ this.props.tier1[2] } tier={1} index={2}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
+                            <TokenCard style={{marginLeft: "5%"}} 
+                                CardInfo={ this.props.tier1[3] } tier={1} index={3}
+                                buyCard={ this.props.buyCard } bookCard={ this.props.bookCard }
+                            />
                         </div>
                     </div>
                 </div>

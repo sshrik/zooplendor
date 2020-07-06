@@ -42,7 +42,7 @@ function RightClickMenu(props) {
             <MenuItem 
                 data={{act: 'buy'}}
                 onClick={ (e, data, el) => {
-                    console.log("Clicked! : " + data);
+                    props.buyCard(props.tier, props.index);
                 }}
             >
                 구매하기
@@ -50,7 +50,7 @@ function RightClickMenu(props) {
             <MenuItem 
                 data={{act: 'book'}}
                 onClick={ (e, data, el) => {
-                    console.log("Clicked! : " + data);
+                    props.bookCard(props.tier, props.index);
                 }}
             >
                 예약하기
@@ -67,7 +67,7 @@ export class TokenCard extends React.Component {
     render() {
         return (
             <span style={ Object.assign({}, this.props.style, { display: "inline", width: 100, height: 140 }) }>
-                <ContextMenuTrigger renderTag="span" id={"tokenCard " + this.props.cardIndex}>
+                <ContextMenuTrigger renderTag="span" id={"tokenCard " + this.props.tier + " " + this.props.index}>
                     <span style={tokenCardStyles.tokenCardTop}>
                         <span style={tokenCardStyles.tokenCardRewordContainer}>
                             <img 
@@ -90,7 +90,12 @@ export class TokenCard extends React.Component {
                         style={{ width: 100, height: 140 }}
                     />
                 </ContextMenuTrigger>
-                <RightClickMenu id={"tokenCard " + this.props.cardIndex}/>
+                <RightClickMenu 
+                    tier={this.props.tier} index={this.props.index} 
+                    id={"tokenCard " + this.props.tier + " " + this.props.index}
+                    buyCard={this.props.buyCard}
+                    bookCard={this.props.bookCard}
+                    />
             </span>
         )
     }
