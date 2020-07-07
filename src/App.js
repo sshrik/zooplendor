@@ -189,6 +189,30 @@ class App extends React.Component {
 		});
 	}
 
+	getHaving(havingToken, havingCard) {
+		let having = havingToken.slice();
+		let cardHaving = [0, 0, 0, 0, 0];
+
+		for(let i = 0; i < havingCard.tier1.length; i++) {
+			having[i] += havingCard.tier1[i].length;
+			cardHaving[i] += havingCard.tier1[i].length;
+		}
+
+
+		for(let i = 0; i < havingCard.tier2.length; i++) {
+			having[i] += havingCard.tier2[i].length;
+			cardHaving[i] += havingCard.tier2[i].length;
+		}
+
+
+		for(let i = 0; i < havingCard.tier3.length; i++) {
+			having[i] += havingCard.tier3[i].length;
+			cardHaving[i] += havingCard.tier3[i].length;
+		}
+
+		return [having, cardHaving]
+	}
+
 	buyCard(tier, index) {
 		let tempPlayer = this.state.player.slice();
 		let tokenRemains = this.state.tokenRemains.slice();
@@ -217,30 +241,19 @@ class App extends React.Component {
 
 		let nowPlayer = tempPlayer[this.state.turn-1];
 		let nowHavingToken = nowPlayer.tokenNumber;
-		let nowhavingCard = nowPlayer.tokenCard;
+		let nowHavingCard = nowPlayer.tokenCard;
 
 		// Checking all having token.
-		let having = nowHavingToken.slice();
-		let cardHaving = [0, 0, 0, 0, 0]; // Token number which having with cards.
-		
-		for(let i = 0; i < nowhavingCard.tier1.length; i++) {
-			having[nowhavingCard.tier1[i].reword] += 1;
-			cardHaving[nowhavingCard.tier1[i].reword] += 1;
-		}
-		for(let i = 0; i < nowhavingCard.tier2.length; i++) {
-			having[nowhavingCard.tier2[i].reword] += 1;
-			cardHaving[nowhavingCard.tier2[i].reword] += 1;
-		}
-		for(let i = 0; i < nowhavingCard.tier3.length; i++) {
-			having[nowhavingCard.tier3[i].reword] += 1;
-			cardHaving[nowhavingCard.tier3[i].reword] += 1;
-		}
+		let [having, cardHaving] = this.getHaving(nowHavingToken, nowHavingCard);
 
 		if( this.checkNeed(need, having) ) {
 			let pickNumber = -1;
 			for(let i = 0; i < need.length; i++) {
-				nowPlayer.tokenNumber[i] -= (need[i] - cardHaving[i]);
-				tokenRemains[i] += (need[i] - cardHaving[i]);
+				// 가진 토큰 카드가 더 많을 땐 토큰을 주지 않으므로 계산하지 않는다.
+				if(cardHaving[i] < need[i]) {
+					nowPlayer.tokenNumber[i] -= (need[i] - cardHaving[i]);
+					tokenRemains[i] += (need[i] - cardHaving[i]);
+				}
 			}
 			switch(tier) {
 				case 1:
@@ -253,13 +266,19 @@ class App extends React.Component {
 					nowPlayer.tokenCard.tier3[this.state.boardTier3.opened[index].reword].push(this.state.boardTier3.opened[index]);
 					break;
 				default:
-
 					break;
 			}
-			pickNumber = this.pickRandom(tempBoardPool);
-			tempBoardOpened.splice(index, 0, tempBoardPool[pickNumber]);
-			tempBoardOpened.splice(index + 1, 1);
-			tempBoardPool.splice(pickNumber, 1);
+
+			// Refill board.
+			if(tempBoardPool.length == 0) {
+				console.log("Pool is empty!")
+			}
+			else {
+				pickNumber = this.pickRandom(tempBoardPool);
+				tempBoardOpened.splice(index, 0, tempBoardPool[pickNumber]);
+				tempBoardOpened.splice(index + 1, 1);
+				tempBoardPool.splice(pickNumber, 1);
+			}
 
 			switch(tier) {
 				case 1:

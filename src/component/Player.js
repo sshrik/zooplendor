@@ -247,6 +247,7 @@ function SavingCard(props) {
 
 export function Player(props) {
     let [nowTurn, setNowTurn] = useState({ backgroundColor: "#FFFFFF"});
+    let [goldenTokens, setGoldenTokens] = useState([]);
 
     useEffect(() => {
         if(props.turn == props.playerNumber) {
@@ -256,6 +257,12 @@ export function Player(props) {
             setNowTurn({ backgroundColor: "#FFFFFF"});
         }
     }, [props.turn]);
+
+    useEffect(() => {
+        for(let i = 0; i < props.havingToken[GOLDEN_TOKEN_INDEX]; i++) {
+            goldenTokens.push(i == 0 ? <GoldenToken /> : <GoldenToken style={{marginTop: -23}}/>);
+        }
+    },[props.havingToken[GOLDEN_TOKEN_INDEX]]);
 
     return (
         <span style={Object.assign({}, props.style, nowTurn)}>
@@ -270,9 +277,7 @@ export function Player(props) {
             </div>
             <div style={{display: "flex"}}>
                 <span style={ playerStyle.goldenTokenContainer }>
-                    <GoldenToken />
-                    <GoldenToken style={{marginTop: -23}}/>
-                    <GoldenToken style={{marginTop: -23}}/>
+                    {goldenTokens}
                 </span>
                 <SavingCard img={ BackCardImageList[0] } number={ 1 } style={{flex: 1}} />
                 <HavingCard havingList={ props.havingList } tokenIndx={ RED_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
