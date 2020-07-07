@@ -18,8 +18,16 @@ const playerStyle = {
         resizeMode: 'contain' 
     },
     cardBackImg : { 
+        display: "flex",
         width:50, 
         height: 70, 
+        resizeMode: 'contain' 
+    },
+    cardBackImgMargined : { 
+        display: "flex",
+        width:50, 
+        height: 70,
+        marginTop: -65,
         resizeMode: 'contain' 
     },
     marginedCardBackImg : { 
@@ -237,10 +245,20 @@ function HavingToken(props) {
 }
 
 function SavingCard(props) {
+    let savingList = [];
+
+    for(let i = 0; i < props.savingList.length; i++) {
+        if(i == 0) savingList.push(<img style={ playerStyle.cardBackImg } src={ props.savingList[i].imgSrc }/>);
+        else savingList.push(<img style={ playerStyle.cardBackImgMargined } src={ props.savingList[i].imgSrc }/>);
+    }
+    if(props.number == 0) {
+        savingList.push(<span style={ playerStyle.cardBackImg }/>)
+    }
+    
     return(
         <span style={Object.assign({}, props.style, { margin: 5 })}>
             <p style={ havingStyle.havingP }> { props.number } </p>
-            <img style={ playerStyle.cardBackImg } src={ BackCardImageList[0] }/>
+            {savingList}
         </span>
     )
 }
@@ -283,7 +301,7 @@ export function Player(props) {
                 <span style={ playerStyle.goldenTokenContainer }>
                     {goldenTokens}
                 </span>
-                <SavingCard img={ BackCardImageList[0] } number={ 1 } style={{flex: 1}} />
+                <SavingCard img={ BackCardImageList[0] } savingList={ props.savingList } style={{flex: 1}} />
                 <HavingCard havingList={ props.havingList } tokenIndx={ RED_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
                 <HavingCard havingList={ props.havingList } tokenIndx={ BLACK_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
             </div>

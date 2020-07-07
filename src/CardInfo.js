@@ -18,241 +18,281 @@ export const TokenCardList = {
             need : [1, 1, 1, 1, 0],
             reword : 4,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 5.png"
+            imgSrc : "/resource/tokenCard/Tier 1 5.png",
+            tier: 1
         },
         {
             need : [1, 2, 1, 1, 0],
             reword : 4,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 5.png"
+            imgSrc : "/resource/tokenCard/Tier 1 5.png",
+            tier: 1
         },
         {
             need : [2, 2, 0, 1, 0],
             reword : 4,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 5.png"
+            imgSrc : "/resource/tokenCard/Tier 1 5.png",
+            tier: 1
         },
         {
             need : [0, 0, 1, 3, 1],
             reword : 4,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 5.png"
+            imgSrc : "/resource/tokenCard/Tier 1 5.png",
+            tier: 1
         },
         {
             need : [0, 0, 2, 1, 0],
             reword : 4,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 5.png"
+            imgSrc : "/resource/tokenCard/Tier 1 5.png",
+            tier: 1
         },
         {
             need : [2, 0, 2, 0, 0],
             reword : 4,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 5.png"
+            imgSrc : "/resource/tokenCard/Tier 1 5.png",
+            tier: 1
         },
         {
             need : [0, 0, 3, 0, 0],
             reword : 4,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 5.png"
+            imgSrc : "/resource/tokenCard/Tier 1 5.png",
+            tier: 1
         },
         {
             need : [0, 4, 0, 0, 0],
             reword : 4,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 1 5.png"
+            imgSrc : "/resource/tokenCard/Tier 1 5.png",
+            tier: 1
         },
         {
             need : [1, 0, 1, 1, 1],
             reword : 1,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 2.png"
+            imgSrc : "/resource/tokenCard/Tier 1 2.png",
+            tier: 1
         },
         {
             need : [1, 0, 1, 2, 1],
             reword : 1,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 2.png"
+            imgSrc : "/resource/tokenCard/Tier 1 2.png",
+            tier: 1
         },
         {
             need : [1, 0, 2, 2, 0],
             reword : 1,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 2.png"
+            imgSrc : "/resource/tokenCard/Tier 1 2.png",
+            tier: 1
         },
         {
             need : [0, 1, 3, 1, 0],
             reword : 1,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 2.png"
+            imgSrc : "/resource/tokenCard/Tier 1 2.png",
+            tier: 1
         },
         {
             need : [1, 0, 0, 0, 2],
             reword : 1,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 2.png"
+            imgSrc : "/resource/tokenCard/Tier 1 2.png",
+            tier: 1
         },
         {
             need : [0, 0, 2, 0, 2],
             reword : 1,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 2.png"
+            imgSrc : "/resource/tokenCard/Tier 1 2.png",
+            tier: 1
         },
         {
             need : [0, 0, 0, 0, 3],
             reword : 1,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 2.png"
+            imgSrc : "/resource/tokenCard/Tier 1 2.png",
+            tier: 1
         },
         {
             need : [0, 0, 0, 4, 0],
             reword : 1,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 1 2.png"
+            imgSrc : "/resource/tokenCard/Tier 1 2.png",
+            tier: 1
         },
         {
             need : [0, 1, 1, 1, 1],
             reword : 0,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 1.png"
+            imgSrc : "/resource/tokenCard/Tier 1 1.png",
+            tier: 1
         },
         {
             need : [0, 1, 2, 1, 1],
             reword : 0,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 1.png"
+            imgSrc : "/resource/tokenCard/Tier 1 1.png",
+            tier: 1
         },
         {
             need : [0, 2, 2, 0, 1],
             reword : 0,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 1.png"
+            imgSrc : "/resource/tokenCard/Tier 1 1.png",
+            tier: 1
         },
         {
             need : [3, 1, 0, 0, 1],
             reword : 0,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 1.png"
+            imgSrc : "/resource/tokenCard/Tier 1 1.png",
+            tier: 1
         },
         {
             need : [0, 0, 0, 2, 1],
             reword : 0,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 1.png"
+            imgSrc : "/resource/tokenCard/Tier 1 1.png",
+            tier: 1
         },
         {
             need : [0, 2, 0, 0, 2],
             reword : 0,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 1.png"
+            imgSrc : "/resource/tokenCard/Tier 1 1.png",
+            tier: 1
         },
         {
             need : [0, 3, 0, 0, 0],
             reword : 0,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 1.png"
+            imgSrc : "/resource/tokenCard/Tier 1 1.png",
+            tier: 1
         },
         {
             need : [0, 0, 4, 0, 0],
             reword : 0,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 1 1.png"
+            imgSrc : "/resource/tokenCard/Tier 1 1.png",
+            tier: 1
         },
         {
             need : [1, 1, 0, 1, 1],
             reword : 2,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 3.png"
+            imgSrc : "/resource/tokenCard/Tier 1 3.png",
+            tier: 1
         },
         {
             need : [1, 1, 0, 1, 2],
             reword : 2,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 3.png"
+            imgSrc : "/resource/tokenCard/Tier 1 3.png",
+            tier: 1
         },
         {
             need : [0, 1, 0, 2, 2],
             reword : 2,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 3.png"
+            imgSrc : "/resource/tokenCard/Tier 1 3.png",
+            tier: 1
         },
         {
             need : [1, 3, 1, 0, 0],
             reword : 2,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 3.png"
+            imgSrc : "/resource/tokenCard/Tier 1 3.png",
+            tier: 1
         },
         {
             need : [2, 1, 0, 0, 0],
             reword : 2,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 3.png"
+            imgSrc : "/resource/tokenCard/Tier 1 3.png",
+            tier: 1
         },
         {
             need : [0, 2, 0, 2, 0],
             reword : 2,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 3.png"
+            imgSrc : "/resource/tokenCard/Tier 1 3.png",
+            tier: 1
         },
         {
             need : [0, 0, 0, 3, 0],
             reword : 2,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 3.png"
+            imgSrc : "/resource/tokenCard/Tier 1 3.png",
+            tier: 1
         },
         {
             need : [0, 0, 0, 0, 4],
             reword : 2,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 1 3.png"
+            imgSrc : "/resource/tokenCard/Tier 1 3.png",
+            tier: 1
         },
         {
             need : [1, 1, 1, 0, 1],
             reword : 3,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 4.png"
+            imgSrc : "/resource/tokenCard/Tier 1 4.png",
+            tier: 1
         },
         {
             need : [2, 1, 1, 0, 1],
             reword : 3,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 4.png"
+            imgSrc : "/resource/tokenCard/Tier 1 4.png",
+            tier: 1
         },
         {
             need : [2, 0, 1, 0, 2],
             reword : 3,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 4.png"
+            imgSrc : "/resource/tokenCard/Tier 1 4.png",
+            tier: 1
         },
         {
             need : [1, 0, 0, 1, 3],
             reword : 3,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 4.png"
+            imgSrc : "/resource/tokenCard/Tier 1 4.png",
+            tier: 1
         },
         {
             need : [0, 2, 1, 0, 0],
             reword : 3,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 4.png"
+            imgSrc : "/resource/tokenCard/Tier 1 4.png",
+            tier: 1
         },
         {
             need : [2, 0, 0, 2, 0],
             reword : 3,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 4.png"
+            imgSrc : "/resource/tokenCard/Tier 1 4.png",
+            tier: 1
         },
         {
             need : [3, 0, 0, 0, 0],
             reword : 3,
             score: 0,
-            imgSrc : "/resource/tokenCard/Tier 1 4.png"
+            imgSrc : "/resource/tokenCard/Tier 1 4.png",
+            tier: 1
         },
         {
             need : [4, 0, 0, 0, 0],
             reword : 3,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 1 4.png"
+            imgSrc : "/resource/tokenCard/Tier 1 4.png",
+            tier: 1
         },
     ],
     tier2 : [
@@ -260,181 +300,211 @@ export const TokenCardList = {
             need : [3, 2, 2, 0, 0],
             reword : 4,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 9.png"
+            imgSrc : "/resource/tokenCard/Tier 2 9.png",
+            tier: 2
         },
         {
             need : [3, 0, 3, 0, 2],
             reword : 4,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 9.png"
+            imgSrc : "/resource/tokenCard/Tier 2 9.png",
+            tier: 2
         },
         {
             need : [0, 1, 4, 2, 0],
             reword : 4,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 9.png"
+            imgSrc : "/resource/tokenCard/Tier 2 9.png",
+            tier: 2
         },
         {
             need : [0, 0, 5, 3, 0],
             reword : 4,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 10.png"
+            imgSrc : "/resource/tokenCard/Tier 2 10.png",
+            tier: 2
         },
         {
             need : [5, 0, 0, 0, 0],
             reword : 4,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 10.png"
+            imgSrc : "/resource/tokenCard/Tier 2 10.png",
+            tier: 2
         },
         {
             need : [0, 0, 0, 0, 6],
             reword : 4,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 2 10.png"
+            imgSrc : "/resource/tokenCard/Tier 2 10.png",
+            tier: 2
         },
         {
             need : [0, 2, 2, 3, 0],
             reword : 1,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 3.png"
+            imgSrc : "/resource/tokenCard/Tier 2 3.png",
+            tier: 2
         },
         {
             need : [0, 2, 3, 0, 3],
             reword : 1,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 3.png"
+            imgSrc : "/resource/tokenCard/Tier 2 3.png",
+            tier: 2
         },
         {
             need : [5, 3, 0, 0, 0],
             reword : 1,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 3.png"
+            imgSrc : "/resource/tokenCard/Tier 2 3.png",
+            tier: 2
         },
         {
             need : [2, 0, 0, 1, 4],
             reword : 1,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 4.png"
+            imgSrc : "/resource/tokenCard/Tier 2 4.png",
+            tier: 2
         },
         {
             need : [0, 5, 0, 0, 0],
             reword : 1,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 4.png"
+            imgSrc : "/resource/tokenCard/Tier 2 4.png",
+            tier: 2
         },
         {
             need : [0, 6, 0, 0, 0],
             reword : 1,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 2 4.png"
+            imgSrc : "/resource/tokenCard/Tier 2 4.png",
+            tier: 2
         },
         {
             need : [0, 0, 3, 2, 2],
             reword : 0,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 1.png"
+            imgSrc : "/resource/tokenCard/Tier 2 1.png",
+            tier: 2
         },
         {
             need : [2, 3, 0, 3, 0],
             reword : 0,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 1.png"
+            imgSrc : "/resource/tokenCard/Tier 2 1.png",
+            tier: 2
         },
         {
             need : [0, 0, 1, 4, 2],
             reword : 0,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 1.png"
+            imgSrc : "/resource/tokenCard/Tier 2 1.png",
+            tier: 2
         },
         {
             need : [0, 0, 0, 5, 3],
             reword : 0,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 2.png"
+            imgSrc : "/resource/tokenCard/Tier 2 2.png",
+            tier: 2
         },
         {
             need : [0, 0, 0, 5, 0],
             reword : 0,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 2.png"
+            imgSrc : "/resource/tokenCard/Tier 2 2.png",
+            tier: 2
         },
         {
             need : [6, 0, 0, 0, 0],
             reword : 0,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 2 2.png"
+            imgSrc : "/resource/tokenCard/Tier 2 2.png",
+            tier: 2
         },
         {
             need : [3, 0, 2, 3, 0],
             reword : 2,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 5.png"
+            imgSrc : "/resource/tokenCard/Tier 2 5.png",
+            tier: 2
         },
         {
             need : [2, 3, 0, 0, 2],
             reword : 2,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 5.png"
+            imgSrc : "/resource/tokenCard/Tier 2 5.png",
+            tier: 2
         },
         {
             need : [4, 2, 0, 0, 1],
             reword : 2,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 5.png"
+            imgSrc : "/resource/tokenCard/Tier 2 5.png",
+            tier: 2
         },
         {
             need : [0, 5, 3, 0, 0],
             reword : 2,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 6.png"
+            imgSrc : "/resource/tokenCard/Tier 2 6.png",
+            tier: 2
         },
         {
             need : [0, 0, 5, 0, 0],
             reword : 2,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 6.png"
+            imgSrc : "/resource/tokenCard/Tier 2 6.png",
+            tier: 2
         },
         {
             need : [0, 0, 6, 0, 0],
             reword : 2,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 2 6.png"
+            imgSrc : "/resource/tokenCard/Tier 2 6.png",
+            tier: 2
         },
         {
             need : [2, 0, 0, 2, 3],
             reword : 3,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 7.png"
+            imgSrc : "/resource/tokenCard/Tier 2 7.png",
+            tier: 2
         },
         {
             need : [0, 3, 0, 2, 3],
             reword : 3,
             score: 1,
-            imgSrc : "/resource/tokenCard/Tier 2 7.png"
+            imgSrc : "/resource/tokenCard/Tier 2 7.png",
+            tier: 2
         },
         {
             need : [1, 4, 2, 0, 0],
             reword : 3,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 7.png"
+            imgSrc : "/resource/tokenCard/Tier 2 7.png",
+            tier: 2
         },
         {
             need : [3, 0, 0, 0, 5],
             reword : 3,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 8.png"
+            imgSrc : "/resource/tokenCard/Tier 2 8.png",
+            tier: 2
         },
         {
             need : [0, 0, 0, 0, 5],
             reword : 3,
             score: 2,
-            imgSrc : "/resource/tokenCard/Tier 2 8.png"
+            imgSrc : "/resource/tokenCard/Tier 2 8.png",
+            tier: 2
         },
         {
             need : [0, 0, 0, 6, 0],
             reword : 3,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 2 8.png"
+            imgSrc : "/resource/tokenCard/Tier 2 8.png",
+            tier: 2
         },
     ],
     tier3 : [
@@ -442,121 +512,141 @@ export const TokenCardList = {
             need : [3, 3, 5, 3, 0],
             reword : 4,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 3 9.png"
+            imgSrc : "/resource/tokenCard/Tier 3 9.png",
+            tier: 3
         },
         {
             need : [0, 0, 0, 7, 0],
             reword : 4,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 9.png"
+            imgSrc : "/resource/tokenCard/Tier 3 9.png",
+            tier: 3
         },
         {
             need : [0, 0, 3, 6, 3],
             reword : 4,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 10.png"
+            imgSrc : "/resource/tokenCard/Tier 3 10.png",
+            tier: 3
         },
         {
             need : [0, 0, 0, 7, 3],
             reword : 4,
             score: 5,
-            imgSrc : "/resource/tokenCard/Tier 3 10.png"
+            imgSrc : "/resource/tokenCard/Tier 3 10.png",
+            tier: 3
         },
         {
             need : [3, 0, 3, 3, 5],
             reword : 1,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 3 3.png"
+            imgSrc : "/resource/tokenCard/Tier 3 3.png",
+            tier: 3
         },
         {
             need : [7, 0, 0, 0, 0],
             reword : 1,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 3.png"
+            imgSrc : "/resource/tokenCard/Tier 3 3.png",
+            tier: 3
         },
         {
             need : [6, 3, 0, 0, 3],
             reword : 1,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 4.png"
+            imgSrc : "/resource/tokenCard/Tier 3 4.png",
+            tier: 3
         },
         {
             need : [7, 3, 0, 0, 0],
             reword : 1,
             score: 5,
-            imgSrc : "/resource/tokenCard/Tier 3 4.png"
+            imgSrc : "/resource/tokenCard/Tier 3 4.png",
+            tier: 3
         },
         {
             need : [0, 3, 3, 5, 3],
             reword : 0,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 3 1.png"
+            imgSrc : "/resource/tokenCard/Tier 3 1.png",
+            tier: 3
         },
         {
             need : [0, 0, 0, 0, 7],
             reword : 0,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 1.png"
+            imgSrc : "/resource/tokenCard/Tier 3 1.png",
+            tier: 3
         },
         {
             need : [3, 0, 0, 3, 6],
             reword : 0,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 2.png"
+            imgSrc : "/resource/tokenCard/Tier 3 2.png",
+            tier: 3
         },
         {
             need : [3, 0, 0, 0, 7],
             reword : 0,
             score: 5,
-            imgSrc : "/resource/tokenCard/Tier 3 2.png"
+            imgSrc : "/resource/tokenCard/Tier 3 2.png",
+            tier: 3
         },
         {
             need : [5, 3, 0, 3, 3],
             reword : 2,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 3 5.png"
+            imgSrc : "/resource/tokenCard/Tier 3 5.png",
+            tier: 3
         },
         {
             need : [0, 7, 0, 0, 0],
             reword : 2,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 5.png"
+            imgSrc : "/resource/tokenCard/Tier 3 5.png",
+            tier: 3
         },
         {
             need : [3, 6, 3, 0, 0],
             reword : 2,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 6.png"
+            imgSrc : "/resource/tokenCard/Tier 3 6.png",
+            tier: 3
         },
         {
             need : [0, 7, 3, 0, 0],
             reword : 2,
             score: 5,
-            imgSrc : "/resource/tokenCard/Tier 3 6.png"
+            imgSrc : "/resource/tokenCard/Tier 3 6.png",
+            tier: 3
         },
         {
             need : [3, 5, 3, 0, 3],
             reword : 3,
             score: 3,
-            imgSrc : "/resource/tokenCard/Tier 3 7.png"
+            imgSrc : "/resource/tokenCard/Tier 3 7.png",
+            tier: 3
         },
         {
             need : [0, 0, 7, 0, 0],
             reword : 3,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 7.png"
+            imgSrc : "/resource/tokenCard/Tier 3 7.png",
+            tier: 3
         },
         {
             need : [0, 3, 6, 3, 0],
             reword : 3,
             score: 4,
-            imgSrc : "/resource/tokenCard/Tier 3 8.png"
+            imgSrc : "/resource/tokenCard/Tier 3 8.png",
+            tier: 3
         },
         {
             need : [0, 0, 7, 3, 0],
             reword : 3,
             score: 5,
-            imgSrc : "/resource/tokenCard/Tier 3 8.png"
+            imgSrc : "/resource/tokenCard/Tier 3 8.png",
+            tier: 3
         },
     ],
 };

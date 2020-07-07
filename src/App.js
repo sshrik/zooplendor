@@ -1,7 +1,7 @@
 import React from 'react';
 import { GameBoard } from './component/GameBoard.js';
 import { Player } from './component/Player.js';
-import { ComboCardList, TokenCardList, BackCardImageList } from './CardInfo.js';
+import { ComboCardList, TokenCardList, BackCardImageList, GOLDEN_TOKEN_INDEX } from './CardInfo.js';
 
 const exToken = {
     tier1 : {
@@ -334,7 +334,94 @@ class App extends React.Component {
 	}
 
 	bookCard(tier, index) {
-		console.log("Card Book " + tier + " : " + index);
+		let tempPlayer = this.state.player.slice();
+		let nowPlayer = tempPlayer[this.state.turn-1];
+	
+		// 3개보다 많이 저장 할 수 없음.
+		console.log(nowPlayer.savingCard.length);
+		if(nowPlayer.savingCard.length >= 3) {
+			console.log("Too many cards in saving list.");
+			return ;
+		}
+
+		let tokenRemains = this.state.tokenRemains.slice();
+		let tempBoardOpened = [];
+		let tempBoardPool = [];
+		
+		switch(tier) {
+			case 1:
+				tempBoardOpened = this.state.boardTier1.opened.slice();
+				tempBoardPool = this.state.boardTier1.cardPool.slice();
+				break;
+			case 2:
+				tempBoardOpened = this.state.boardTier2.opened.slice();
+				tempBoardPool = this.state.boardTier2.cardPool.slice();
+				break;
+			case 3:
+				tempBoardOpened = this.state.boardTier3.opened.slice();
+				tempBoardPool = this.state.boardTier3.cardPool.slice();
+			default:
+				break;
+		}
+
+		if(tokenRemains[GOLDEN_TOKEN_INDEX] <= 0) { 
+			console.log("Token is not ready. Just booking card into hands.")
+		}
+		else {
+			nowPlayer.tokenNumber[GOLDEN_TOKEN_INDEX] += 1;
+			tokenRemains[GOLDEN_TOKEN_INDEX] -= 1;
+			// TODO : IF token number is over 10, need to throw.
+		}
+		nowPlayer.savingCard.push(tempBoardOpened[index]);
+	
+		// Refill board.
+		if(tempBoardPool.length == 0) {
+			console.log("Pool is empty!")
+		}
+		else {
+			let pickNumber = this.pickRandom(tempBoardPool);
+			tempBoardOpened.splice(index, 0, tempBoardPool[pickNumber]);
+			tempBoardOpened.splice(index + 1, 1);
+			tempBoardPool.splice(pickNumber, 1);
+		}
+
+		switch(tier) {
+			case 1:
+				this.setState({
+					player: tempPlayer,
+					turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+					tokenRemains: tokenRemains,
+					boardTier1: {
+						cardPool: tempBoardPool,
+						opened: tempBoardOpened
+					},
+				});
+				break;
+			case 2:
+				this.setState({
+					player: tempPlayer,
+					turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+					tokenRemains: tokenRemains,
+					boardTier2: {
+						cardPool: tempBoardPool,
+						opened: tempBoardOpened
+					}
+				});
+				break;
+			case 3:
+				this.setState({
+					player: tempPlayer,
+					turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+					tokenRemains: tokenRemains,
+					boardTier3: {
+						cardPool: tempBoardPool,
+						opened: tempBoardOpened
+					}
+				});
+				break;
+			default:
+				break;
+		}
 	}
 
 	render() {
@@ -359,6 +446,7 @@ class App extends React.Component {
 						playerNumber={ 1 }
 						havingToken={ this.state.player[0].tokenNumber } 
 						havingList={ this.state.player[0].tokenCard } 
+						savingList={ this.state.player[0].savingCard }
 						style={{marginBottom: 50}} 
 					/>
 					<Player 
@@ -366,6 +454,7 @@ class App extends React.Component {
 						playerNumber={ 2 }
 						havingToken={ this.state.player[1].tokenNumber } 
 						havingList={ this.state.player[1].tokenCard } 
+						savingList={ this.state.player[1].savingCard }
 					/>	
 				</div>
 				<div style={{ display: "flex", flexDirection: "column", marginLeft: 50 }}>
@@ -374,6 +463,7 @@ class App extends React.Component {
 						playerNumber={ 3 }
 						havingToken={ this.state.player[2].tokenNumber } 
 						havingList={ this.state.player[2].tokenCard } 
+						savingList={ this.state.player[2].savingCard }
 						style={{marginBottom: 50}}
 					/>
 					<Player 
@@ -381,6 +471,7 @@ class App extends React.Component {
 						playerNumber={ 4 }
 						havingToken={ this.state.player[3].tokenNumber } 
 						havingList={ this.state.player[3].tokenCard }
+						savingList={ this.state.player[3].savingCard }
 					/>	
 				</div>
 			</div>
