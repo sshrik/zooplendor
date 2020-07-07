@@ -259,9 +259,13 @@ export function Player(props) {
     }, [props.turn]);
 
     useEffect(() => {
+        let tempGoldenTokens = [];
+
         for(let i = 0; i < props.havingToken[GOLDEN_TOKEN_INDEX]; i++) {
-            goldenTokens.push(i == 0 ? <GoldenToken /> : <GoldenToken style={{marginTop: -23}}/>);
+            tempGoldenTokens.push(i == 0 ? <GoldenToken /> : <GoldenToken style={{marginTop: -23}}/>);
         }
+        
+        setGoldenTokens(tempGoldenTokens);
     },[props.havingToken[GOLDEN_TOKEN_INDEX]]);
 
     return (
