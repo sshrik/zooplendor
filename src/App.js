@@ -2,6 +2,7 @@ import React from 'react';
 import { GameBoard } from './component/GameBoard.js';
 import { Player } from './component/Player.js';
 import { ComboCardList, TokenCardList, BackCardImageList, GOLDEN_TOKEN_INDEX } from './CardInfo.js';
+import { DumpTokenPopUp } from './component/DumpToken.js';
 
 const exToken = {
     tier1 : {
@@ -437,7 +438,7 @@ class App extends React.Component {
 					comboCardList={ this.state.comboCardList }
 					playerToken={ this.state.player }
 					selectToken={ this.selectToken }
-					buyCard={ this.buyCard } 
+					buyCard={ this.buyCard }
 					bookCard={ this.bookCard }
 				/>
 				<div style={{ display: "flex", flexDirection: "column" }}>
@@ -474,6 +475,7 @@ class App extends React.Component {
 						savingList={ this.state.player[3].savingCard }
 					/>	
 				</div>
+				<DumpTokenPopUp style={{position: "absolute", marginLeft: "25%", width: "50%", height: "50%"}} />
 			</div>
 		);
 	}
