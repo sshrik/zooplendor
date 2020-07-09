@@ -21,27 +21,57 @@ export function DumpTokenPopUp(props) {
             <div style={{display: "flex", height: "50%", justifyContent: 'center'}}>
                 <SelectToken 
                     imgSrc={TokenImageList[WHITE_TOKEN_INDEX]} 
-                    nowSelect={0} total={0}/>
+                    nowSelect={props.selectToken[WHITE_TOKEN_INDEX]} 
+                    total={props.totalToken[WHITE_TOKEN_INDEX]}
+                    index={WHITE_TOKEN_INDEX}
+					tokenPlus={props.tokenPlus}
+					tokenMinus={props.tokenMinus}
+                />
                 <SelectToken 
                     style={{ marginLeft: 12 }}
                     imgSrc={TokenImageList[BLUE_TOKEN_INDEX]} 
-                    nowSelect={0} total={0}/>
+                    nowSelect={props.selectToken[BLUE_TOKEN_INDEX]} 
+                    total={props.totalToken[BLUE_TOKEN_INDEX]}
+                    index={BLUE_TOKEN_INDEX}
+					tokenPlus={props.tokenPlus}
+					tokenMinus={props.tokenMinus}
+                />
                 <SelectToken 
                     style={{ marginLeft: 12 }}
                     imgSrc={TokenImageList[GREEN_TOKEN_INDEX]} 
-                    nowSelect={0} total={0}/>
+                    nowSelect={props.selectToken[GREEN_TOKEN_INDEX]} 
+                    total={props.totalToken[GREEN_TOKEN_INDEX]}
+                    index={GREEN_TOKEN_INDEX}
+					tokenPlus={props.tokenPlus}
+					tokenMinus={props.tokenMinus}
+                />
                 <SelectToken 
                     style={{ marginLeft: 12 }}
                     imgSrc={TokenImageList[RED_TOKEN_INDEX]} 
-                    nowSelect={0} total={0}/>
+                    nowSelect={props.selectToken[RED_TOKEN_INDEX]} 
+                    total={props.totalToken[RED_TOKEN_INDEX]}
+                    index={RED_TOKEN_INDEX}
+					tokenPlus={props.tokenPlus}
+					tokenMinus={props.tokenMinus}
+                />
                 <SelectToken 
                     style={{ marginLeft: 12 }}
                     imgSrc={TokenImageList[BLACK_TOKEN_INDEX]} 
-                    nowSelect={0} total={0}/>
+                    nowSelect={props.selectToken[BLACK_TOKEN_INDEX]} 
+                    total={props.totalToken[BLACK_TOKEN_INDEX]}
+                    index={BLACK_TOKEN_INDEX}
+					tokenPlus={props.tokenPlus}
+					tokenMinus={props.tokenMinus}
+                />
                 <SelectToken 
                     style={{ marginLeft: 12 }}
                     imgSrc={TokenImageList[GOLDEN_TOKEN_INDEX]} 
-                    nowSelect={0} total={0}/>
+                    nowSelect={props.selectToken[GOLDEN_TOKEN_INDEX]} 
+                    total={props.totalToken[GOLDEN_TOKEN_INDEX]}
+                    index={GOLDEN_TOKEN_INDEX}
+					tokenPlus={props.tokenPlus}
+					tokenMinus={props.tokenMinus}
+                />
             </div>
             <div style={{display: "flex", alignItems: "flex-end", justifyContent: "flex-end", height: "25%"}}>
                 <span style={{display:"flex", alignItems: "center", justifyContent: "center", width: 100, height: 40, borderRadius: 8, marginBottom : 36, marginRight: 36, backgroundColor: "#3E81E5"}}>

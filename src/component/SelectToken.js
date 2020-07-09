@@ -8,10 +8,16 @@ export function SelectToken(props) {
                 <img 
                     style={{marginLeft: 5, marginRight: 30, width: 20, height: 20}}
                     src="/resource/button/PlusBtn.png"
+                    onClick={() => {
+                        props.tokenPlus(props.index);
+                    }}
                 />
                 <img 
                     style={{width: 20, height: 20}}
                     src="/resource/button/MinusBtn.png"
+                    onClick={() => {
+                        props.tokenMinus(props.index);
+                    }}
                 />
             </div>
             <img 

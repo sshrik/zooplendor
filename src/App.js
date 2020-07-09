@@ -59,13 +59,17 @@ class App extends React.Component {
 			nowSelectedToken : [],
 			nowSelectedCard : [],
 			turn : 1,
-			playerNumber: 4
+			playerNumber: 4,
+			dumpTotalToken : [2, 3, 2, 3, 2, 3],
+			dumpSelectToken : [0, 0, 0, 0, 0, 0]
 		}
 
 		this.selectToken = this.selectToken.bind(this);
 		this.giveToken = this.giveToken.bind(this);
 		this.buyCard = this.buyCard.bind(this);
 		this.bookCard = this.bookCard.bind(this);
+		this.tokenPlus = this.tokenPlus.bind(this);
+		this.tokenMinus = this.tokenMinus.bind(this);
 	}
 
 	componentDidMount() {
@@ -424,6 +428,28 @@ class App extends React.Component {
 				break;
 		}
 	}
+	
+	tokenPlus(index) {
+		if(this.state.dumpSelectToken[index] < this.state.dumpTotalToken[index])	{
+			let tempSelectToken = this.state.dumpSelectToken.slice();
+			tempSelectToken[index] += 1;
+
+			this.setState({
+				dumpSelectToken: tempSelectToken
+			});
+		}
+	}
+
+	tokenMinus(index) {
+		if(this.state.dumpSelectToken[index] > 0)	{
+			let tempSelectToken = this.state.dumpSelectToken.slice();
+			tempSelectToken[index] -= 1;
+
+			this.setState({
+				dumpSelectToken: tempSelectToken
+			});
+		}
+	}
 
 	render() {
 		return (
@@ -475,7 +501,13 @@ class App extends React.Component {
 						savingList={ this.state.player[3].savingCard }
 					/>	
 				</div>
-				<DumpTokenPopUp style={{position: "absolute", marginLeft: "25%", width: "50%", height: "50%"}} />
+				<DumpTokenPopUp 
+					style={{position: "absolute", marginLeft: "25%", width: "50%", height: "50%"}}
+					totalToken={this.state.dumpTotalToken}
+					selectToken={this.state.dumpSelectToken}
+					tokenPlus={this.tokenPlus}
+					tokenMinus={this.tokenMinus}
+				/>
 			</div>
 		);
 	}
