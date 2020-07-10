@@ -443,6 +443,18 @@ class App extends React.Component {
 				break;
 		}
 
+		for(let i = 0 ; i < tempBoardOpened[index].need.length; i++) {
+			if(tempBoardOpened[index].need[i] == 0) {
+				if(i == tempBoardOpened[index].need.length - 1) {
+					// Do not interact with example token.
+					return ;
+				}
+			}
+			else {
+				break;
+			}
+		}
+		
 		if(tokenRemains[GOLDEN_TOKEN_INDEX] <= 0) { 
 			console.log("Token is not ready. Just booking card into hands.")
 		}
@@ -455,6 +467,20 @@ class App extends React.Component {
 		// Refill board.
 		if(tempBoardPool.length == 0) {
 			console.log("Pool is empty!")
+			switch(tier) {
+				case 1:
+					tempBoardOpened.splice(index, 0, exToken.tier1);
+					break;
+				case 2:
+					tempBoardOpened.splice(index, 0, exToken.tier2);
+					break;
+				case 3:
+					tempBoardOpened.splice(index, 0, exToken.tier3);
+					break;
+				default:
+					break;
+			}
+			tempBoardOpened.splice(index + 1, 1);
 		}
 		else {
 			let pickNumber = this.pickRandom(tempBoardPool);
