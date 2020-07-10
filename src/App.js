@@ -278,6 +278,18 @@ class App extends React.Component {
 		let nowHavingToken = nowPlayer.tokenNumber;
 		let nowHavingCard = nowPlayer.tokenCard;
 
+		for(let i = 0 ; i < tempBoardOpened[index].need.length; i++) {
+			if(tempBoardOpened[index].need[i] == 0) {
+				if(i == tempBoardOpened[index].need.length - 1) {
+					// Do not interact with example token.
+					return ;
+				}
+			}
+			else {
+				break;
+			}
+		}
+
 		// Checking all having token.
 		let [having, cardHaving] = this.getHaving(nowHavingToken, nowHavingCard);
 
@@ -290,23 +302,25 @@ class App extends React.Component {
 					tokenRemains[i] += (need[i] - cardHaving[i]);
 				}
 			}
-			switch(tier) {
-				case 1:
-					nowPlayer.tokenCard.tier1[this.state.boardTier1.opened[index].reword].push(this.state.boardTier1.opened[index]);
-					break;
-				case 2:
-					nowPlayer.tokenCard.tier2[this.state.boardTier2.opened[index].reword].push(this.state.boardTier2.opened[index]);
-					break;
-				case 3:
-					nowPlayer.tokenCard.tier3[this.state.boardTier3.opened[index].reword].push(this.state.boardTier3.opened[index]);
-					break;
-				default:
-					break;
-			}
+			nowPlayer.tokenCard.tier1[tempBoardOpened[index].reword].push(tempBoardOpened[index]);
 
 			// Refill board.
 			if(tempBoardPool.length == 0) {
 				console.log("Pool is empty!")
+				switch(tier) {
+					case 1:
+						tempBoardOpened.splice(index, 0, exToken.tier1);
+						break;
+					case 2:
+						tempBoardOpened.splice(index, 0, exToken.tier2);
+						break;
+					case 3:
+						tempBoardOpened.splice(index, 0, exToken.tier3);
+						break;
+					default:
+						break;
+				}
+				tempBoardOpened.splice(index + 1, 1);
 			}
 			else {
 				pickNumber = this.pickRandom(tempBoardPool);
@@ -352,7 +366,37 @@ class App extends React.Component {
 				default:
 					break;
 			}
+			this.settingScore();
 		}
+	}
+
+	settingScore() {
+		let tempPlayer = this.state.player.slice();
+		let tempScore = 0;
+
+		for(let turn = 0; turn < 4; turn++) {
+			for(let i = 0 ; i < tempPlayer[turn].tokenCard.tier1.length; i++) {
+				for(let j = 0; j < tempPlayer[turn].tokenCard.tier1[i].length; j++) {
+					tempScore += tempPlayer[turn].tokenCard.tier1[i][j].score;
+				}
+			}
+			for(let i = 0 ; i < tempPlayer[turn].tokenCard.tier2.length; i++) {
+				for(let j = 0; j < tempPlayer[turn].tokenCard.tier2[i].length; j++) {
+					tempScore += tempPlayer[turn].tokenCard.tier2[i][j].score;
+				}
+			}
+			for(let i = 0 ; i < tempPlayer[turn].tokenCard.tier3.length; i++) {
+				for(let j = 0; j < tempPlayer[turn].tokenCard.tier3[i].length; j++) {
+					tempScore += tempPlayer[turn].tokenCard.tier3[i][j].score;
+				}
+			}
+			tempPlayer[turn].score = tempScore;
+			console.log(tempScore);
+			tempScore = 0;
+		}
+
+
+		this.setState({ player: tempPlayer });
 	}
 
 	checkNeed(need, having){ 
@@ -551,6 +595,7 @@ class App extends React.Component {
 						havingToken={ this.state.player[0].tokenNumber } 
 						havingList={ this.state.player[0].tokenCard } 
 						savingList={ this.state.player[0].savingCard }
+						score={ this.state.player[0].score }
 						style={{marginBottom: 50}} 
 					/>
 					<Player 
@@ -559,6 +604,7 @@ class App extends React.Component {
 						havingToken={ this.state.player[1].tokenNumber } 
 						havingList={ this.state.player[1].tokenCard } 
 						savingList={ this.state.player[1].savingCard }
+						score={ this.state.player[1].score }
 					/>	
 				</div>
 				<div style={{ display: "flex", flexDirection: "column", marginLeft: 50 }}>
@@ -568,6 +614,7 @@ class App extends React.Component {
 						havingToken={ this.state.player[2].tokenNumber } 
 						havingList={ this.state.player[2].tokenCard } 
 						savingList={ this.state.player[2].savingCard }
+						score={ this.state.player[2].score }
 						style={{marginBottom: 50}}
 					/>
 					<Player 
@@ -576,6 +623,7 @@ class App extends React.Component {
 						havingToken={ this.state.player[3].tokenNumber } 
 						havingList={ this.state.player[3].tokenCard }
 						savingList={ this.state.player[3].savingCard }
+						score={ this.state.player[3].score }
 					/>	
 				</div>
 				<DumpTokenPopUp 

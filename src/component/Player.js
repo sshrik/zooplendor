@@ -266,6 +266,7 @@ function SavingCard(props) {
 export function Player(props) {
     let [nowTurn, setNowTurn] = useState({ backgroundColor: "#FFFFFF"});
     let [goldenTokens, setGoldenTokens] = useState([]);
+    let [score, setScore] = useState(0);
 
     useEffect(() => {
         if(props.turn == props.playerNumber) {
@@ -291,7 +292,7 @@ export function Player(props) {
             <div style={{display: "flex"}}>
                 <span style={ playerStyle.scoreContainer }>
                     <p style={ playerStyle.scoreP }> SCORE </p>
-                    <p style={ playerStyle.scoreNum }> 8 </p>
+                    <p style={ playerStyle.scoreNum }> {props.score} </p>
                 </span>
                 <HavingCard havingList={ props.havingList } tokenIndx={ WHITE_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
                 <HavingCard havingList={ props.havingList } tokenIndx={ BLUE_TOKEN_INDEX } havingToken={ props.havingToken } style={{flex: 1}} />
