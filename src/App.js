@@ -373,6 +373,7 @@ class App extends React.Component {
 	settingScore() {
 		let tempPlayer = this.state.player.slice();
 		let tempScore = 0;
+		let finishFlag = false;
 
 		for(let turn = 0; turn < 4; turn++) {
 			for(let i = 0 ; i < tempPlayer[turn].tokenCard.tier1.length; i++) {
@@ -391,8 +392,56 @@ class App extends React.Component {
 				}
 			}
 			tempPlayer[turn].score = tempScore;
-			console.log(tempScore);
+			if(tempScore >= 15) {
+				finishFlag = true;
+			}
 			tempScore = 0;
+		}
+
+		if(finishFlag) {
+			let highestPlayerIndex = 0;
+			for(let i = 0; i < tempPlayer.length; i++) {
+				if(tempPlayer[highestPlayerIndex].score < tempPlayer[i].score) {
+					highestPlayerIndex = i;
+				}
+			}
+			
+			// TODO : Make console.log to alert.
+			console.log("Game finish. Player " + (i+1) + " is win.");
+
+			if(turn == 4) {
+				let tempPlayer = [];
+				
+				for(let i = 0; i < 4; i++) {
+					tempPlayer.push( this.makePlayerPreset() );
+				}
+
+				this.setState({
+					player : tempPlayer,
+					boardTier1 : {
+						cardPool : TokenCardList.tier1.slice(),
+						opened : [ exToken.tier1, exToken.tier1, exToken.tier1, exToken.tier1 ],
+					},
+					boardTier2 : {
+						cardPool : TokenCardList.tier2.slice(),
+						opened : [ exToken.tier2, exToken.tier2, exToken.tier2, exToken.tier2 ],
+					},
+					boardTier3 : {
+						cardPool : TokenCardList.tier3.slice(),
+						opened : [ exToken.tier3, exToken.tier3, exToken.tier3, exToken.tier3 ]
+					},
+					tokenRemains : [7, 7, 7, 7, 7, 7],
+					comboCardList : [ exToken.combo, exToken.combo, exToken.combo, exToken.combo, exToken.combo ],
+					nowSelectedToken : [],
+					nowSelectedCard : [],
+					turn : 1,
+					playerNumber: 4,
+					dumpTotalToken : [0, 0, 0, 0, 0, 0],
+					dumpSelectToken : [0, 0, 0, 0, 0, 0],
+					dumpTokenVisible : false
+				});
+				this.settingBoard(4);
+			}
 		}
 
 
@@ -454,7 +503,7 @@ class App extends React.Component {
 				break;
 			}
 		}
-		
+
 		if(tokenRemains[GOLDEN_TOKEN_INDEX] <= 0) { 
 			console.log("Token is not ready. Just booking card into hands.")
 		}
