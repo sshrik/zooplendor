@@ -443,9 +443,9 @@ class App extends React.Component {
 				this.settingBoard(4);
 			}
 		}
-
-
-		this.setState({ player: tempPlayer });
+		else {
+			this.setState({ player: tempPlayer });
+		}
 	}
 
 	checkNeed(need, having){ 
