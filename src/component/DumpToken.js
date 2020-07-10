@@ -74,7 +74,12 @@ export function DumpTokenPopUp(props) {
                 />
             </div>
             <div style={{display: "flex", alignItems: "flex-end", justifyContent: "flex-end", height: "25%"}}>
-                <span style={{display:"flex", alignItems: "center", justifyContent: "center", width: 100, height: 40, borderRadius: 8, marginBottom : 36, marginRight: 36, backgroundColor: "#3E81E5"}}>
+                <span 
+                    style={{display:"flex", alignItems: "center", justifyContent: "center", width: 100, height: 40, borderRadius: 8, marginBottom : 36, marginRight: 36, backgroundColor: "#3E81E5"}}
+                    onClick={() => {
+                        props.dumpToken();
+                    }}
+                >
                     <p style={{color: "#FFFFFF", fontSize: 18}}> 결정 </p>
                 </span>
             </div>

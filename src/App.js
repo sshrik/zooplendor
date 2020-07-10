@@ -30,6 +30,15 @@ const exToken = {
     }
 }
 
+const visible = {
+	true: {
+		visibility: 'visible'
+	},
+	false: {
+		visibility: 'hidden'
+	}
+}
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -60,8 +69,9 @@ class App extends React.Component {
 			nowSelectedCard : [],
 			turn : 1,
 			playerNumber: 4,
-			dumpTotalToken : [2, 3, 2, 3, 2, 3],
-			dumpSelectToken : [0, 0, 0, 0, 0, 0]
+			dumpTotalToken : [0, 0, 0, 0, 0, 0],
+			dumpSelectToken : [0, 0, 0, 0, 0, 0],
+			dumpTokenVisible : false
 		}
 
 		this.selectToken = this.selectToken.bind(this);
@@ -70,6 +80,7 @@ class App extends React.Component {
 		this.bookCard = this.bookCard.bind(this);
 		this.tokenPlus = this.tokenPlus.bind(this);
 		this.tokenMinus = this.tokenMinus.bind(this);
+		this.dumpToken = this.dumpToken.bind(this);
 	}
 
 	componentDidMount() {
@@ -158,6 +169,13 @@ class App extends React.Component {
 		if(tempToken.length == 2) {
 			if(tempToken[0] == tempToken[1]) {
 				this.giveToken(tempToken);
+				
+				if(this.checkOver10(tempToken)) {
+					this.setState({
+						dumpTokenVisible:  true
+					})
+				}
+				// TODO : if token over 10, dumping logic do.
 				this.setState({
 					turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
 					nowSelectedToken: []
@@ -168,11 +186,22 @@ class App extends React.Component {
 			}
 		}
 		else if(tempToken.length == 3) {
-			this.giveToken(tempToken);
-			this.setState({
-				turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
-				nowSelectedToken: []
-			});
+			let givenToken = this.giveToken(tempToken);
+			// TODO : if token over 10, dumping logic do.
+			
+			if(this.checkOver10(givenToken)) {
+				this.setState({
+					dumpTokenVisible:  true,
+					dumpTotalToken: givenToken,
+					nowSelectedToken: []
+				})
+			}
+			else {
+				this.setState({
+					turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+					nowSelectedToken: []
+				});
+			}
 		}
 		else {
 			this.setState({nowSelectedToken: tempToken});
@@ -192,6 +221,7 @@ class App extends React.Component {
 			player: tempPlayer,
 			tokenRemains: tempTokenRemain
 		});
+		return tempPlayer[this.state.turn - 1].tokenNumber;
 	}
 
 	getHaving(havingToken, havingCard) {
@@ -375,7 +405,6 @@ class App extends React.Component {
 		else {
 			nowPlayer.tokenNumber[GOLDEN_TOKEN_INDEX] += 1;
 			tokenRemains[GOLDEN_TOKEN_INDEX] -= 1;
-			// TODO : IF token number is over 10, need to throw.
 		}
 		nowPlayer.savingCard.push(tempBoardOpened[index]);
 	
@@ -394,7 +423,6 @@ class App extends React.Component {
 			case 1:
 				this.setState({
 					player: tempPlayer,
-					turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
 					tokenRemains: tokenRemains,
 					boardTier1: {
 						cardPool: tempBoardPool,
@@ -405,7 +433,6 @@ class App extends React.Component {
 			case 2:
 				this.setState({
 					player: tempPlayer,
-					turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
 					tokenRemains: tokenRemains,
 					boardTier2: {
 						cardPool: tempBoardPool,
@@ -416,7 +443,6 @@ class App extends React.Component {
 			case 3:
 				this.setState({
 					player: tempPlayer,
-					turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
 					tokenRemains: tokenRemains,
 					boardTier3: {
 						cardPool: tempBoardPool,
@@ -427,8 +453,28 @@ class App extends React.Component {
 			default:
 				break;
 		}
+
+		if(this.checkOver10(nowPlayer.tokenNumber)) {
+			this.setState({
+				dumpTokenVisible:  true,
+				dumpTotalToken: nowPlayer.tokenNumber
+			})
+		}
+		else {
+			this.setState({ turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1 });
+		}
 	}
 	
+	checkOver10(tokenNumber) {
+		// Return if token is over 10.
+		let totalTokenNumber = 0;
+		for(let i = 0; i < tokenNumber.length; i++) {
+			totalTokenNumber += tokenNumber[i];
+		}
+
+		return totalTokenNumber > 10;
+	}
+
 	tokenPlus(index) {
 		if(this.state.dumpSelectToken[index] < this.state.dumpTotalToken[index])	{
 			let tempSelectToken = this.state.dumpSelectToken.slice();
@@ -449,6 +495,37 @@ class App extends React.Component {
 				dumpSelectToken: tempSelectToken
 			});
 		}
+	}
+
+	dumpToken() {
+		// TODO : Need to show user token is not under 10. ( can be same. )
+		let totalTokenNumber = 0;
+		for(let i = 0; i < this.state.dumpSelectToken.length; i++) {
+			totalTokenNumber += (this.state.dumpTotalToken[i] - this.state.dumpSelectToken[i]);
+		}
+		
+		if(totalTokenNumber > 10) {
+			return ;
+		}
+
+		let tempPlayer = this.state.player.slice();
+		let nowPlayer = tempPlayer[this.state.turn - 1];
+		let tempRemain = this.state.tokenRemains.slice();
+		
+		// Give selected token to computer.
+		for(let i = 0; i < nowPlayer.tokenNumber.length; i++) {
+			nowPlayer.tokenNumber[i] -= this.state.dumpSelectToken[i];
+			tempRemain[i] += this.state.dumpSelectToken[i];	
+		}
+
+		this.setState({
+			player: tempPlayer,
+			tokenRemains: tempRemain,
+			dumpSelectToken: [0, 0, 0, 0, 0, 0],
+			dumpTotalToken: [0, 0, 0, 0, 0, 0],
+			turn: this.state.turn + 1 > 4 ? (this.state.turn + 1) % 4  : this.state.turn + 1,
+			dumpTokenVisible: false
+		})
 	}
 
 	render() {
@@ -502,11 +579,12 @@ class App extends React.Component {
 					/>	
 				</div>
 				<DumpTokenPopUp 
-					style={{position: "absolute", marginLeft: "25%", width: "50%", height: "50%"}}
+					style={ Object.assign({}, {position: "absolute", marginLeft: "25%", width: "50%", height: "50%"}, this.state.dumpTokenVisible ? visible.true : visible.false) }
 					totalToken={this.state.dumpTotalToken}
 					selectToken={this.state.dumpSelectToken}
 					tokenPlus={this.tokenPlus}
 					tokenMinus={this.tokenMinus}
+					dumpToken={this.dumpToken}
 				/>
 			</div>
 		);
