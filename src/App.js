@@ -399,18 +399,17 @@ class App extends React.Component {
 		}
 
 		if(finishFlag) {
-			// 15점 달성시 더 나중의 높은 점수를 가진 사람이 승리.
-			let highestPlayerIndex = 0;
-			for(let i = 0; i < tempPlayer.length; i++) {
-				if(tempPlayer[highestPlayerIndex].score <= tempPlayer[i].score) {
-					highestPlayerIndex = i;
-				}
-			}
-			
-			// TODO : Make console.log to alert.
-			console.log("Game finish. Player " + (i+1) + " is win.");
-
 			if(turn == 4) {
+				// 15점 달성시 더 나중의 높은 점수를 가진 사람이 승리.
+				let highestPlayerIndex = 0;
+				for(let i = 0; i < tempPlayer.length; i++) {
+					if(tempPlayer[highestPlayerIndex].score <= tempPlayer[i].score) {
+						highestPlayerIndex = i;
+					}
+				}
+				
+				// TODO : Make console.log to alert.
+				console.log("Game finish. Player " + (i+1) + " is win.");
 				let tempPlayer = [];
 				
 				for(let i = 0; i < 4; i++) {
